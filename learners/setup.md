@@ -143,11 +143,12 @@ you probably [need to change the version of Anaconda you have installed](https:/
 
 ## Starting Jupyter Lab
 
-We will teach using Python in [Jupyter lab][jupyter], a
-programming environment that runs in a web browser. Jupyter requires a reasonably
-up-to-date browser, preferably a current version of Chrome, Safari, or Firefox
-(note that Internet Explorer version 9 and below are *not* supported). If you
-installed Python using Anaconda, Jupyter should already be on your system. If
+We will teach using Python in [Jupyter lab][jupyter], a programming environment that runs in a web browser.
+Jupyter Lab is compatible with Firefox, Chrome, Safari and Chromium-based browsers.
+Note that Internet Explorer and Edge are *not* supported.
+See the [Jupyter Lab documentation](https://jupyterlab.readthedocs.io/en/latest/getting_started/accessibility.html#compatibility-with-browsers-and-assistive-technology) for an up-to-date list of supported browsers.
+
+If you installed Python using Anaconda, Jupyter should already be on your system. If
 you did not use Anaconda, use the Python package manager pip
 (see the [Jupyter website][jupyter-install] for details.)
 
