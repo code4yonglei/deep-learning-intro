@@ -28,7 +28,7 @@ exercises: 80
 In this episode we first introduce a simple approach to the problem,
 then we iterate on that a few times to, step-by-step,
 working towards a more complex solution.
-Unfortunately this involves using the same code repeatedly over and over again,
+Unfortunately, this involves using the same code repeatedly over and over again,
 only slightly adapting it.
 
 To avoid too much typing, it can help to copy-paste code from higher up in the notebook.
@@ -160,7 +160,7 @@ This is a good time for switching instructor and/or a break.
 
 In episode 2 we trained a dense neural network on a *classification task*. For this one hot encoding was used together with a `Categorical Crossentropy` loss function.
 This measured how close the distribution of the neural network outputs corresponds to the distribution of the three values in the one hot encoding.
-Now we want to work on a *regression task*, thus not predicting a class label (or integer number) for a datapoint. In regression, we like to predict one (and sometimes many) values of a feature. This is typically a floating point number.
+Now we want to work on a *regression task*, thus not predicting a class label (or integer number) for a datapoint. In regression, we predict one (and sometimes many) values of a feature. This is typically a floating point number.
 
 ::: challenge
 ## Exercise: Architecture of the network
@@ -336,8 +336,9 @@ That is indeed a good first indicator if things are working alright, i.e. if the
 However, when models become more complicated then also the loss functions often become less intuitive.
 That is why it is good practice to monitor the training process with additional, more intuitive metrics.
 They are not used to optimize the model, but are simply recorded during training.
-With Keras such additional metrics can be added via `metrics=[...]` parameter and can contain one or multiple metrics of interest.
-Here we could for instance chose to use `'mae'` the mean absolute error, or the the *root mean squared error* (RMSE) which unlike the *mse* has the same units as the predicted values. For the sake of units, we choose the latter.
+
+With Keras, such additional metrics can be added via `metrics=[...]` parameter and can contain one or multiple metrics of interest.
+Here we could for instance chose `mae` ([mean absolute error](https://glosario.carpentries.org/en/#mean_absolute_error)), or the the [*root mean squared error* (RMSE)](https://glosario.carpentries.org/en/#root_mean_squared_error) which unlike the *mse* has the same units as the predicted values. For the sake of units, we choose the latter.
 
 ```python
 model.compile(optimizer='adam',
