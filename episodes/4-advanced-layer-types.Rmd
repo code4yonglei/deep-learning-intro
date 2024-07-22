@@ -44,10 +44,11 @@ val_labels = np.load(DATA_FOLDER / 'test_labels.npy')
 
 :::::::::::::::::::::::::::::::::::::::::: callout
 
-### A Note About Data Provenance
+### A note about data provenance
 In an earlier version, this part of the lesson used a different example dataset.
 During [peer review](https://github.com/carpentries-lab/reviews/issues/25#issuecomment-1953271802), the decision was made to replace that dataset due to the way it had been compiled using images "scraped" from the internet without permission from or credit to the original creators of those images. Unfortunately, uncredited use of images is a common problem among datasets used to benchmark models for image classification.
-The Dollar Street dataset was chosen for use in the lesson as it contains only images [created by the Gapminder project](https://www.gapminder.org/dollar-street/about?) expressly for the purposes of use in the dataset.
+
+The Dollar Street dataset was chosen for use in the lesson as it contains only images [created by the Gapminder project](https://www.gapminder.org/dollar-street/about?) for the purposes of using them in the dataset.
 The original Dollar Street dataset is very large -- more than 100 GB -- with the potential to grow even bigger, so we created a subset for use in this lesson.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

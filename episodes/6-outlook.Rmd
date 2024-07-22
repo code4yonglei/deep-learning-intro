@@ -25,7 +25,7 @@ To introduce the core concepts of deep learning we have used quite simple machin
 But how does what we learned so far apply to real-world applications?
 
 To illustrate that what we learned is actually the basis of succesful applications in research,
-we will have a look at an example from the field of cheminformatics.
+we will have a look at an example from the field of [cheminformatics](https://en.wikipedia.org/wiki/Cheminformatics).
 
 We will have a look at [this notebook](https://github.com/matchms/ms2deepscore/blob/0.4.0/notebooks/MS2DeepScore_tutorial.ipynb).
 It is part of the codebase for [this paper](https://doi.org/10.1186/s13321-021-00558-4).
