@@ -53,7 +53,7 @@ The original Dollar Street dataset is very large -- more than 100 GB -- with the
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-## Dollar Street 10 dataset
+### Dollar Street 10 dataset
 
 The Dollar Street 10 dataset consists of images of 10 different classes, this is the mapping of the categories:
 
@@ -159,7 +159,7 @@ val_images = val_images / 255.0
 
 ## 4. Choose a pretrained model or start building architecture from scratch
 
-## Convolutional layers
+### Convolutional layers
 In the previous episodes, we used 'fully connected layers' , that connected all input values of a layer to all outputs of a layer.
 This results in many connections, and thus many weights to be learned, in the network.
 Note that our input dimension is now quite high (even with small pictures of `64x64` pixels): we have 12288 features.
@@ -350,7 +350,7 @@ The aim is to demonstrate that what we are learning is really the basis for more
 and you do not need to reinvent the wheel.
 :::
 
-## Pooling layers
+### Pooling layers
 Often in convolutional neural networks, the convolutional layers are intertwined with **Pooling layers**. As opposed to the convolutional layer, the pooling layer actually alters the dimensions of the image and reduces it by a scaling factor. It is basically decreasing the resolution of your picture. The rationale behind this is that higher layers of the network should focus on higher-level features of the image. By introducing a pooling layer, the subsequent convolutional layer has a broader 'view' on the original image.
 
 Let's put it into practice. We compose a Convolutional network with two convolutional layers and two pooling layers.
@@ -674,7 +674,7 @@ audio data for speech recognition, or 3d structures of chemical compounds.
 ::::
 :::
 
-## Dropout
+### Dropout
 
 Note that the training loss continues to decrease, while the validation loss stagnates, and even starts to increase over the course of the epochs. Similarly, the accuracy for the validation set does not improve anymore after some epochs. This means we are overfitting on our training data set.
 
@@ -836,7 +836,7 @@ This is called hyperparameter tuning.
 ::::
 :::
 
-## Hyperparameter tuning
+### Hyperparameter tuning
 ::: instructor
 ## Do a live demo instead of live coding
 You might want to demonstrate this section on hyperparameter tuning instead of doing live coding.
