@@ -127,7 +127,9 @@ https://commons.wikimedia.org/w/index.php?curid=44920600, https://commons.wikime
 
 
 ##### Combining multiple neurons into a network
-Multiple neurons can be joined together by connecting the output of one to the input of another. These connections are associated with weights that determine the 'strength' of the connection, the weights are adjusted during training. In this way, the combination of neurons and connections describe a computational graph, an example can be seen in the image below. In most neural networks neurons are aggregated into layers. Signals travel from the input layer to the output layer, possibly through one or more intermediate layers called hidden layers.
+Multiple neurons can be joined together by connecting the output of one to the input of another. These connections are associated with weights that determine the 'strength' of the connection, the weights are adjusted during training. In this way, the combination of neurons and connections describe a computational graph, an example can be seen in the image below.
+
+In most neural networks, neurons are aggregated into layers. Signals travel from the input layer to the output layer, possibly through one or more intermediate layers called hidden layers.
 The image below shows an example of a neural network with three layers, each circle is a neuron, each line is an edge and the arrows indicate the direction data moves in.
 
 ![
@@ -197,9 +199,13 @@ b. This solves the XOR logical problem, the output is 1 if only one of the two i
 :::
 
 ##### What makes deep learning deep learning?
-Neural networks aren't a new technique, they have been around since the late 1940s. But until around 2010 neural networks tended to be quite small, consisting of only 10s or perhaps 100s of neurons. This limited them to only solving quite basic problems. Around 2010 improvements in computing power and the algorithms for training the networks made much larger and more powerful networks practical. These are known as deep neural networks or deep learning.
+Neural networks aren't a new technique, they have been around since the late 1940s. But until around 2010 neural networks tended to be quite small, consisting of only 10s or perhaps 100s of neurons. This limited them to only solving quite basic problems. Around 2010, improvements in computing power and the algorithms for training the networks made much larger and more powerful networks practical. These are known as deep neural networks or deep learning.
 
-Deep Learning requires extensive training using example data which shows the network what output it should produce for a given input. One common application of deep learning is classifying images. Here the network will be trained by being "shown" a series of images and told what they contain. Once the network is trained it should be able to take another image and correctly classify its contents. But we are not restricted to just using images, any kind of data can be learned by a deep learning neural network. This makes them able to appear to learn a set of complex rules only by being shown what the inputs and outputs of those rules are instead of being taught the actual rules. Using these approaches deep learning networks have been taught to play video games and even drive cars. The data on which networks are trained usually has to be quite extensive, typically including thousands of examples. For this reason they are not suited to all applications and should be considered just one of many machine learning techniques which are available.
+Deep learning requires extensive training using example data which shows the network what output it should produce for a given input. One common application of deep learning is [classifying](https://glosario.carpentries.org/en/#classification) images. Here the network will be trained by being "shown" a series of images and told what they contain. Once the network is trained it should be able to take another image and correctly classify its contents.
+
+But we are not restricted to just using images, any kind of data can be learned by a deep learning neural network. This makes them able to appear to learn a set of complex rules only by being shown what the inputs and outputs of those rules are instead of being taught the actual rules. Using these approaches, deep learning networks have been taught to play video games and even drive cars.
+
+The data on which networks are trained usually has to be quite extensive, typically including thousands of examples. For this reason they are not suited to all applications and should be considered just one of many machine learning techniques which are available.
 
 While traditional "shallow" networks might have had between three and five layers, deep networks often have tens or even hundreds of layers. This leads to them having millions of individual weights.
 The image below shows a diagram of all the layers (there are too many neurons to draw them all) on a deep learning network designed to detect pedestrians in images.
@@ -302,13 +308,13 @@ Here are just a few examples of how deep learning has been applied to some resea
 
 ### What sort of problems can deep learning solve, but should not be used for?
 
-Deep learning needs a lot of computational power, for this reason it often relies on specialised hardware like graphical processing units (GPUs). Many computational problems can be solved using less intensive techniques, but could still technically be solved with deep learning.
+Deep learning needs a lot of computational power, for this reason it often relies on specialised hardware like [graphical processing units (GPUs)](https://glosario.carpentries.org/en/#gpu). Many computational problems can be solved using less intensive techniques, but could still technically be solved with deep learning.
 
 The following could technically be achieved using deep learning, but it would probably be a very wasteful way to do it:
 
-* Logic operations, such as computing totals, averages, ranges etc. (see [this example](https://joelgrus.com/2016/05/23/fizz-buzz-in-tensorflow) applying deep learning to solve the "FizzBuzz" problem often used for programming interviews)
+* Logic operations, such as computing totals, averages, ranges etc. (see [this example](https://joelgrus.com/2016/05/23/fizz-buzz-in-tensorflow) applying deep learning to solve the ["FizzBuzz" problem](https://en.wikipedia.org/wiki/Fizz_buzz) often used for programming interviews)
 * Modelling well defined systems, where the equations governing them are known and understood.
-* Basic computer vision tasks such as edge detection, decreasing colour depth or blurring an image.
+* Basic computer vision tasks such as [edge detection](https://en.wikipedia.org/wiki/Edge_detection), decreasing colour depth or blurring an image.
 
 ::: challenge
 ## Deep Learning Problems Exercise
@@ -347,7 +353,7 @@ In case you have too little data available to train a complex network from scrat
 
 To apply deep learning to a problem there are several steps we need to go through:
 
-### 1. Formulate/ Outline the problem
+### 1. Formulate/Outline the problem
 
 Firstly we must decide what it is we want our deep learning system to do. Is it going to classify some data into one of a few categories? For example if we have an image of some hand written characters, the neural network could classify which character it is being shown. Or is it going to perform a prediction? For example trying to predict what the price of something will be tomorrow given some historical data on pricing and current trends.
 
@@ -444,7 +450,7 @@ There are many software libraries available for deep learning including:
 
 [Keras](https://keras.io/) is designed to be easy to use and usually requires fewer lines of code than other libraries. We have chosen it for this workshop for that reason. Keras can actually work on top of TensorFlow (and several other libraries), hiding away the complexities of TensorFlow while still allowing you to make use of their features.
 
-The performance of Keras is sometimes not as good as other libraries and if you are going to move on to create very large networks using very large datasets then you might want to consider one of the other libraries. But for many applications the performance difference will not be enough to worry about and the time you will save with simpler code will exceed what you will save by having the code run a little faster.
+The processing speed of Keras is sometimes not as high as with other libraries and if you are going to move on to create very large networks using very large datasets then you might want to consider one of the other libraries. But for many applications, the difference will not be enough to worry about and the time you will save with simpler code will exceed what you will save by having the code run a little faster.
 
 Keras also benefits from a very good set of [online documentation](https://keras.io/guides/) and a large user community. You will find that most of the concepts from Keras translate very well across to the other libraries if you wish to learn them at a later date.
 
@@ -453,16 +459,17 @@ Keras also benefits from a very good set of [online documentation](https://keras
 Follow the instructions in the [setup]({{ page.root }}//setup) document to install Keras, Seaborn and scikit-learn.
 
 ## Testing Keras Installation
-Lets check you have a suitable version of tensorflow installed.
+Keras is available as a module within TensorFlow, as described in the [setup]({{ page.root }}//setup).
+Let's therefore check whether you have a suitable version of TensorFlow installed.
 Open up a new Jupyter notebook or interactive python console and run the following commands:
 ```python
 import tensorflow
 print(tensorflow.__version__)
 ```
 ```output
-2.15.0
+2.17.0
 ```
-You should get a version number reported. At the time of writing 2.15.0 is the latest version.
+You should get a version number reported. At the time of writing 2.17.0 is the latest version.
 
 ## Testing Seaborn Installation
 Lets check you have a suitable version of seaborn installed.
@@ -472,9 +479,9 @@ import seaborn
 print(seaborn.__version__)
 ```
 ```output
-0.12.2
+0.13.2
 ```
-You should get a version number reported. At the time of writing 0.12.2 is the latest version.
+You should get a version number reported. At the time of writing 0.13.2 is the latest version.
 
 ## Testing scikit-learn Installation
 Lets check you have a suitable version of scikit-learn installed.
@@ -484,9 +491,9 @@ import sklearn
 print(sklearn.__version__)
 ```
 ```output
-1.2.2
+1.5.1
 ```
-You should get a version number reported. At the time of writing 1.2.2 is the latest version.
+You should get a version number reported. At the time of writing 1.5.1 is the latest version.
 
 
 :::::::::::::::::::::::::::::::::::::: keypoints
