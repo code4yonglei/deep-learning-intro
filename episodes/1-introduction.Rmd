@@ -444,7 +444,7 @@ Follow the instructions in the [setup]({{ page.root }}//setup) document to insta
 
 ## Testing Keras Installation
 Keras is available as a module within TensorFlow, as described in the [setup]({{ page.root }}//setup).
-Let's therefore check you have a suitable version of TensorFlow installed.
+Let's therefore check whether you have a suitable version of TensorFlow installed.
 Open up a new Jupyter notebook or interactive python console and run the following commands:
 ```python
 import tensorflow
