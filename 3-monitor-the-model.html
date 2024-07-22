@@ -588,8 +588,8 @@ This measured how close the distribution of the neural network outputs
 corresponds to the distribution of the three values in the one hot
 encoding. Now we want to work on a <em>regression task</em>, thus not
 predicting a class label (or integer number) for a datapoint. In
-regression, we like to predict one (and sometimes many) values of a
-feature. This is typically a floating point number.</p>
+regression, we predict one (and sometimes many) values of a feature.
+This is typically a floating point number.</p>
 <div id="exercise-architecture-of-the-network" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -865,12 +865,14 @@ with the number of epochs. However, when models become more complicated
 then also the loss functions often become less intuitive. That is why it
 is good practice to monitor the training process with additional, more
 intuitive metrics. They are not used to optimize the model, but are
-simply recorded during training. With Keras such additional metrics can
-be added via <code>metrics=[...]</code> parameter and can contain one or
-multiple metrics of interest. Here we could for instance chose to use
-<code>'mae'</code> the mean absolute error, or the the <em>root mean
-squared error</em> (RMSE) which unlike the <em>mse</em> has the same
-units as the predicted values. For the sake of units, we choose the
+simply recorded during training.</p>
+<p>With Keras, such additional metrics can be added via
+<code>metrics=[...]</code> parameter and can contain one or multiple
+metrics of interest. Here we could for instance chose <code>mae</code>
+(<a href="https://glosario.carpentries.org/en/#mean_absolute_error" class="external-link">mean
+absolute error</a>), or the the <a href="https://glosario.carpentries.org/en/#root_mean_squared_error" class="external-link"><em>root
+mean squared error</em> (RMSE)</a> which unlike the <em>mse</em> has the
+same units as the predicted values. For the sake of units, we choose the
 latter.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
