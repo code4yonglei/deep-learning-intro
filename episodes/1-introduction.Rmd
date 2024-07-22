@@ -48,21 +48,83 @@ alt='An infographic showing the relation of AI, ML, NN and DL. NN are methods in
 
 #### Neural Networks
 
-A neural network is an artificial intelligence technique loosely based on the way neurons in the brain work. 
+A neural network is an artificial intelligence technique loosely based on the way neurons in the brain work.
+A neural network consists of connected computational units called **neurons**.
+Let's look at the operations of a single neuron.
 
 ##### A single neuron
-A neural network consists of connected computational units called **neurons**. Each neuron ...
+ Each neuron ...
 
 - has one or more inputs ($x_1, x_2, ...$), e.g. input data expressed as floating point numbers
 - most of the time, each neuron conducts 3 main operations:
-  + take the weighted sum of the inputs where ($w_1, w_2, ... $) indicate weights
+  + take the weighted sum of the inputs where ($w_1, w_2, ...$) indicate weights
   + add an extra constant weight (i.e. a bias term) to this weighted sum
-  + apply a non-linear function to the output so far (using a predefined activation function such as the ReLU function)
+  + apply an **activation function** to the output so far, we will explain activation functions
 - return one output value, again a floating point number.
-- one example equation to calculate the output for a neuron is: $output = ReLU(\sum_{i} (x_i*w_i) + bias)$
+- one example equation to calculate the output for a neuron is: $output = Activation(\sum_{i} (x_i*w_i) + bias)$
 
 
 ![](fig/01_neuron.png){alt='A diagram of a single artificial neuron combining inputs and weights using an activation function.' width='600px'}
+
+##### Activation functions
+The goal of the activation function is to convert the weighted sum of the inputs to the output signal of the neuron.
+This output is then passed on to the next layer of the network.
+There are many different activation functions, 3 of them are introduced in the exercise below.
+
+::: challenge
+## Activation functions
+Look at the following activation functions:
+
+**A. Sigmoid activation function**
+The sigmoid activation function is given by:
+$$ f(x) = \frac{1}{1 + e^{-x}} $$
+
+![](fig/01_sigmoid.svg){alt='Plot of the sigmoid function' width='70%' align='left'}
+<br clear="all" />
+
+**B. ReLU activation function**
+The Rectified Linear Unit (ReLU) activation function is defined as:
+$$ f(x) = \max(0, x) $$
+
+This involves a simple comparison and maximum calculation, which are basic operations that are computationally inexpensive.
+It is also simple to compute the gradient: 1 for positive inputs and 0 for negative inputs.
+
+![](fig/01_relu.svg){alt='Plot of the ReLU function'  width='70%' align='left'}
+<br clear="all" />
+
+**C. Linear (or identity) activation function (output=input)**
+The linear activation function is simply the identity function:
+$$ f(x) = x $$
+
+![](fig/01_identity_function.svg){alt='Plot of the Identity function'  width='70%' align='left'}
+<br clear="all" />
+
+
+Combine the following statements to the correct activation function:
+
+1. This function enforces the activation of a neuron to be between 0 and 1
+2. This function is useful in regression tasks when applied to an output neuron
+3. This function is the most popular activation function in hidden layers, since it introduces non-linearity in a computationally efficient way.
+4. This function is useful in classification tasks when applied to an output neuron
+5. (optional) For positive values this function results in the same activations as the identity function.
+6. (optional) This function is not differentiable at 0
+7. (optional) This function is the default for Dense layers (search the Keras documentation!)
+
+*Activation function plots by Laughsinthestocks - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=44920411,
+https://commons.wikimedia.org/w/index.php?curid=44920600, https://commons.wikimedia.org/w/index.php?curid=44920533*
+
+:::: solution
+## Solution
+1. A
+2. C
+3. B
+4. A
+5. B
+6. B
+7. C
+::::
+:::
+
 
 ##### Combining multiple neurons into a network
 Multiple neurons can be joined together by connecting the output of one to the input of another. These connections are associated with weights that determine the 'strength' of the connection, the weights are adjusted during training. In this way, the combination of neurons and connections describe a computational graph, an example can be seen in the image below. In most neural networks neurons are aggregated into layers. Signals travel from the input layer to the output layer, possibly through one or more intermediate layers called hidden layers.
@@ -133,52 +195,6 @@ b. This solves the XOR logical problem, the output is 1 if only one of the two i
 
 ::::
 :::
-
-::: challenge
-## Activation functions
-Look at the following activation functions:
-
-**A. Sigmoid activation function**
-
-![](fig/01_sigmoid.svg){alt='Plot of the sigmoid function' width='70%' align='left'}
-<br clear="all" />
-
-**B. ReLU activation function**
-
-![](fig/01_relu.svg){alt='Plot of the ReLU function'  width='70%' align='left'}
-<br clear="all" />
-
-**C. Identity (or linear) activation function (output=input)**
-
-![](fig/01_identity_function.svg){alt='Plot of the Identity function'  width='70%' align='left'}
-<br clear="all" />
-
-
-Combine the following statements to the correct activation function:
-
-1. This function enforces the activation of a neuron to be between 0 and 1
-2. This function is useful in regression tasks when applied to an output neuron
-3. This function is the most popular activation function in hidden layers, since it introduces non-linearity in a computationally efficient way.
-4. This function is useful in classification tasks when applied to an output neuron
-5. (optional) For positive values this function results in the same activations as the identity function.
-6. (optional) This function is not differentiable at 0
-7. (optional) This function is the default for Dense layers (search the Keras documentation!)
-
-*Activation function plots by Laughsinthestocks - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=44920411,
-https://commons.wikimedia.org/w/index.php?curid=44920600, https://commons.wikimedia.org/w/index.php?curid=44920533*
-
-:::: solution
-## Solution
-1. A
-2. C
-3. B
-4. A
-5. B
-6. B
-7. C
-::::
-:::
-
 
 ##### What makes deep learning deep learning?
 Neural networks aren't a new technique, they have been around since the late 1940s. But until around 2010 neural networks tended to be quite small, consisting of only 10s or perhaps 100s of neurons. This limited them to only solving quite basic problems. Around 2010 improvements in computing power and the algorithms for training the networks made much larger and more powerful networks practical. These are known as deep neural networks or deep learning.
