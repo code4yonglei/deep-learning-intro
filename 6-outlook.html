@@ -318,7 +318,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Outlook</h1>
-        <p>Last updated on 2024-07-16 |
+        <p>Last updated on 2024-07-22 |
 
         <a href="https://github.com/carpentries-incubator/deep-learning-intro/edit/main/episodes/6-outlook.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -374,21 +374,21 @@ notebook</a>. It is part of the codebase for <a href="https://doi.org/10.1186/s1
 <p>In short, the deep learning problem is that of finding out how
 similar two molecules are in terms of their molecular properties, based
 on their mass spectrum. You can compare this to comparing two pictures
-of animals, and predicting how similar they are. A siamese neural
-network is used to solve the problem. In a siamese neural network you
-have two input vectors, let’s say two images of animals or two mass
-spectra. They pass through a base network. Instead of outputting a class
-or number with one or a few output neurons, the output layer of the base
-network is a whole vector of for example 100 neurons. After passing
-through the base network, you end up with two of these vectors
-representing the two inputs. The goal of the base network is to output a
-meaningful representation of the input (this is called an embedding).
-The next step is to compute the cosine similarity between these two
-output vectors, cosine similarity is a measure for how similar two
-vectors are to each other, ranging from 0 (completely different) to 1
-(identical). This cosine similarity is compared to the actual similarity
-between the two inputs and this error is used to update the weights in
-the network.</p>
+of animals, and predicting how similar they are.</p>
+<p>A siamese neural network is used to solve the problem. In a siamese
+neural network you have two input vectors, let’s say two images of
+animals or two mass spectra. They pass through a base network. Instead
+of outputting a class or number with one or a few output neurons, the
+output layer of the base network is a whole vector of for example 100
+neurons. After passing through the base network, you end up with two of
+these vectors representing the two inputs. The goal of the base network
+is to output a meaningful representation of the input (this is called an
+embedding). The next step is to compute the cosine similarity between
+these two output vectors, cosine similarity is a measure for how similar
+two vectors are to each other, ranging from 0 (completely different) to
+1 (identical). This cosine similarity is compared to the actual
+similarity between the two inputs and this error is used to update the
+weights in the network.</p>
 <p>Don’t worry if you do not fully understand the deep learning problem
 and the approach that is taken here. We just want you to appreciate that
 you already learned enough to be able to do this yourself in your own
@@ -420,7 +420,7 @@ spectral embedding layer drastically, to for example 5 neurons?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>The model summary for the Siamese model is more complex than what we
 have seen so far, but it is basically a repetition of Dense, BatchNorm,
@@ -490,7 +490,7 @@ are the chemical details of the reaction?”</p>
 <p>Developments in LLM research are moving fast, at the end of 2023 the
 newest ChatGPT version <a href="https://openai.com/blog/chatgpt-can-now-see-hear-and-speak" class="external-link">could
 take images and sound as input</a>. In theory, this means that you can
-solve the Cifar-10 image classification problem from the previous
+solve the Dollar Street image classification problem from the previous
 episode by prompt engineering, with prompts similar to “Which out of
 these categories: [LIST OF CATEGORIES] is depicted in the image”.</p>
 <p><strong>Discuss the following statement with your
@@ -670,8 +670,8 @@ any links that you are not going to use.
   "url": "https://carpentries-incubator.github.io/deep-learning-intro/6-outlook.html",
   "identifier": "https://carpentries-incubator.github.io/deep-learning-intro/6-outlook.html",
   "dateCreated": "2020-10-17",
-  "dateModified": "2024-07-16",
-  "datePublished": "2024-07-16"
+  "dateModified": "2024-07-22",
+  "datePublished": "2024-07-22"
 }
 
   </script><script>
