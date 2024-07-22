@@ -235,20 +235,15 @@
       <div class="accordion-body">
         <ul><li><a href="#different-types-of-layers">Different types of layers</a></li>
 <li><a href="#formulate-outline-the-problem-image-classification">1. Formulate / Outline the problem: Image classification</a></li>
-<li><a href="#dollar-street-10-dataset">Dollar Street 10 dataset</a></li>
 <li><a href="#identify-inputs-and-outputs">2. Identify inputs and outputs</a></li>
 <li><a href="#prepare-data">3. Prepare data</a></li>
 <li><a href="#choose-a-pretrained-model-or-start-building-architecture-from-scratch">4. Choose a pretrained model or start building architecture from
 scratch</a></li>
-<li><a href="#convolutional-layers">Convolutional layers</a></li>
-<li><a href="#pooling-layers">Pooling layers</a></li>
 <li><a href="#choose-a-loss-function-and-optimizer">5. Choose a loss function and optimizer</a></li>
 <li><a href="#train-the-model">6. Train the model</a></li>
 <li><a href="#perform-a-predictionclassification">7. Perform a Prediction/Classification</a></li>
 <li><a href="#measure-performance">8. Measure performance</a></li>
 <li><a href="#refine-the-model">9. Refine the model</a></li>
-<li><a href="#dropout">Dropout</a></li>
-<li><a href="#hyperparameter-tuning">Hyperparameter tuning</a></li>
 <li><a href="#share-model">10. Share model</a></li>
 <li><a href="#conclusion-and-next-steps">Conclusion and next steps</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -436,9 +431,9 @@ for use in this lesson.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="dollar-street-10-dataset">Dollar Street 10 dataset<a class="anchor" aria-label="anchor" href="#dollar-street-10-dataset"></a>
-<a class="anchor" aria-label="anchor" href="#dollar-street-10-dataset"></a></h2>
-<hr class="half-width"><p>The Dollar Street 10 dataset consists of images of 10 different
+<div class="section level3">
+<h3 id="dollar-street-10-dataset">Dollar Street 10 dataset<a class="anchor" aria-label="anchor" href="#dollar-street-10-dataset"></a></h3>
+<p>The Dollar Street 10 dataset consists of images of 10 different
 classes, this is the mapping of the categories:</p>
 <table class="table"><thead><tr class="header"><th>Category</th>
 <th>label</th>
@@ -465,7 +460,8 @@ classes, this is the mapping of the categories:</p>
 </tr></tbody></table><figure><img src="fig/04_dollar_street_10.png" alt="A 5 by 5 grid of 25 sample images from the dollar street 10 data-set. Each image is labelled with a category, for example: 'street sign' or 'soap dispenser'." class="figure mx-auto d-block"><div class="figcaption">Sample images from the Dollar Street 10 dataset.
 Each image is labelled with a category, for example: ‘street sign’ or
 ‘soap dispenser’</div>
-</figure></section><section><h2 class="section-heading" id="identify-inputs-and-outputs">2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#identify-inputs-and-outputs"></a>
+</figure></div>
+</section><section><h2 class="section-heading" id="identify-inputs-and-outputs">2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#identify-inputs-and-outputs"></a>
 <a class="anchor" aria-label="anchor" href="#identify-inputs-and-outputs"></a></h2>
 <hr class="half-width"><div class="section level3">
 <h3 id="explore-the-data">Explore the data<a class="anchor" aria-label="anchor" href="#explore-the-data"></a></h3>
@@ -571,9 +567,9 @@ small input values. So we normalize our data between <code>0</code> and
 </section><section><h2 class="section-heading" id="choose-a-pretrained-model-or-start-building-architecture-from-scratch">4. Choose a pretrained model or start building architecture from
 scratch<a class="anchor" aria-label="anchor" href="#choose-a-pretrained-model-or-start-building-architecture-from-scratch"></a>
 <a class="anchor" aria-label="anchor" href="#choose-a-pretrained-model-or-start-building-architecture-from-scratch"></a></h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="convolutional-layers">Convolutional layers<a class="anchor" aria-label="anchor" href="#convolutional-layers"></a>
-<a class="anchor" aria-label="anchor" href="#convolutional-layers"></a></h2>
-<hr class="half-width"><p>In the previous episodes, we used ‘fully connected layers’ , that
+<hr class="half-width"><div class="section level3">
+<h3 id="convolutional-layers">Convolutional layers<a class="anchor" aria-label="anchor" href="#convolutional-layers"></a></h3>
+<p>In the previous episodes, we used ‘fully connected layers’ , that
 connected all input values of a layer to all outputs of a layer. This
 results in many connections, and thus many weights to be learned, in the
 network. Note that our input dimension is now quite high (even with
@@ -882,9 +878,10 @@ teach you is by developing a neural network from scratch!</p>
 </div>
 </div>
 
-</section><section><h2 class="section-heading" id="pooling-layers">Pooling layers<a class="anchor" aria-label="anchor" href="#pooling-layers"></a>
-<a class="anchor" aria-label="anchor" href="#pooling-layers"></a></h2>
-<hr class="half-width"><p>Often in convolutional neural networks, the convolutional layers are
+</div>
+<div class="section level3">
+<h3 id="pooling-layers">Pooling layers<a class="anchor" aria-label="anchor" href="#pooling-layers"></a></h3>
+<p>Often in convolutional neural networks, the convolutional layers are
 intertwined with <strong>Pooling layers</strong>. As opposed to the
 convolutional layer, the pooling layer actually alters the dimensions of
 the image and reduces it by a scaling factor. It is basically decreasing
@@ -943,6 +940,7 @@ Total params: 514510 (1.96 MB)
 Trainable params: 514510 (1.96 MB)
 Non-trainable params: 0 (0.00 Byte)
 _________________________________________________________________</code></pre>
+</div>
 </div>
 </section><section><h2 class="section-heading" id="choose-a-loss-function-and-optimizer">5. Choose a loss function and optimizer<a class="anchor" aria-label="anchor" href="#choose-a-loss-function-and-optimizer"></a>
 <a class="anchor" aria-label="anchor" href="#choose-a-loss-function-and-optimizer"></a></h2>
@@ -1271,9 +1269,9 @@ days.</li>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="dropout">Dropout<a class="anchor" aria-label="anchor" href="#dropout"></a>
-<a class="anchor" aria-label="anchor" href="#dropout"></a></h2>
-<hr class="half-width"><p>Note that the training loss continues to decrease, while the
+<div class="section level3">
+<h3 id="dropout">Dropout<a class="anchor" aria-label="anchor" href="#dropout"></a></h3>
+<p>Note that the training loss continues to decrease, while the
 validation loss stagnates, and even starts to increase over the course
 of the epochs. Similarly, the accuracy for the validation set does not
 improve anymore after some epochs. This means we are overfitting on our
@@ -1464,9 +1462,11 @@ in this case is around 0.9. This is where the val loss is lowest.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="hyperparameter-tuning">Hyperparameter tuning<a class="anchor" aria-label="anchor" href="#hyperparameter-tuning"></a>
-<a class="anchor" aria-label="anchor" href="#hyperparameter-tuning"></a></h2>
-<hr class="half-width"><p>Recall that hyperparameters are model configuration settings that are
+</div>
+<div class="section level3">
+<h3 id="hyperparameter-tuning">Hyperparameter tuning<a class="anchor" aria-label="anchor" href="#hyperparameter-tuning"></a></h3>
+
+<p>Recall that hyperparameters are model configuration settings that are
 chosen before the training process and affect the model’s learning
 behavior and performance, for example the dropout rate. In general, if
 you are varying hyperparameters to find the combination of
@@ -1732,6 +1732,7 @@ of possible hyperparameter combinations.</p>
 hyperparameter tuning strategies, including <a href="https://en.wikipedia.org/wiki/Neural_architecture_search" class="external-link">neural
 architecture search</a> where a separate neural network is trained to
 find the best architecture for a model!</p>
+</div>
 </section><section><h2 class="section-heading" id="share-model">10. Share model<a class="anchor" aria-label="anchor" href="#share-model"></a>
 <a class="anchor" aria-label="anchor" href="#share-model"></a></h2>
 <hr class="half-width"><p>Let’s save our model</p>
