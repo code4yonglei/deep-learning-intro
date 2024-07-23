@@ -98,6 +98,21 @@ py -m pip install seaborn scikit-learn pandas
 python3 -m pip install tensorflow
 ```
 
+::: spoiler
+
+### Advanced: TensorFlow with support for Mac M1/M2/M3
+
+Recent Macs have special chips (M1/M2/M3) that can accelerate deep learning processes.
+Apple has developed the [tensorflow-metal](https://developer.apple.com/metal/tensorflow-plugin/) package to support these chips in TensorFlow.
+This is not supported by the standard TensorFlow installation, and not required for this lesson.
+
+Nevertheless, you can install the on top of the standard `tensorflow`:
+
+```bash
+python -m pip install tensorflow-metal
+```
+
+:::
 :::
 
 ::: spoiler
