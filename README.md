@@ -73,7 +73,8 @@ install.packages(c("sandpaper", "varnish", "pegboard", "tinkr"))
 ```
 
 ## Rendering the website locally
-See https://carpentries.github.io/workbench/ for instructions on how to render the website locally.
+
+See the [Carpentries Workbench usage instructions](https://carpentries.github.io/workbench/#usage) on how to render the website locally.
 
 ## Maintainer(s)
 
@@ -83,6 +84,7 @@ Current maintainers of this lesson are
 * Djura Smits
 * Sven van der Burg
 * Pranav Chandramouli
+* Carsten Schnober
 
 ## Citation and authors
 
