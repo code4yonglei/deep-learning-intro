@@ -24,7 +24,7 @@ The following exercises work well to do in groups / break-out rooms:
 All other exercises are small and can be done individually.
 
 ## Presentation slides
-There are no official presentation slides for this workshop, but this material does include some example
+There are no official presentation slides for this lesson, but this material does include some example
 slides from when this course was taught by different institutions. These slides can be found in 
 the 
 [slides](https://github.com/carpentries-incubator/deep-learning-intro/tree/main/instructors/slides)
