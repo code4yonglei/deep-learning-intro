@@ -22,7 +22,7 @@ you are ready to go as soon as the workshop begins.
 [Pip](https://pip.pypa.io/en/stable/) is the package management system built into Python.
 Pip should be available in your system once you installed Python successfully.
 
-1. [Create a virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments) called `dl_workshop`:
+1. Create a [virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments) called `dl_workshop`:
 
 ::: spoiler
 
@@ -44,7 +44,7 @@ py -m venv dl_workshop
 
 :::
 
-2. Activate the newly created virtual environment
+2. Activate the newly created virtual environment:
 
 ::: spoiler
 
@@ -65,6 +65,9 @@ dl_workshop\Scripts\activate
 ```
 
 :::
+
+Remember that you need to activate your environment every time you restart your terminal!
+
 
 3. Install the required packages:
 
@@ -125,7 +128,7 @@ py -m pip install tensorflow
 
 :::
 
-Note that Tensorflow makes Keras available as a module too.
+Note: Tensorflow makes Keras available as a module too.
 
 ## Starting Jupyter Lab
 
