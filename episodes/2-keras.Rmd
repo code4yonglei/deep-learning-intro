@@ -27,9 +27,23 @@ exercises: 50
 ## Introduction
 In this episode we will learn how to create and train a neural network using Keras to solve a simple classification task.
 
-The goal of this episode is to quickly get your hands dirty in actually defining and training a neural network, without going into depth of how neural networks work on a technical or mathematical level.
-We want you to go through the most commonly used deep learning workflow that was covered
-in the introduction.
+The goal of this episode is to quickly get your hands dirty in actually defining and training a neural network,
+without going into depth of how neural networks work on a technical or mathematical level.
+We want you to go through the full deep learning workflow once before going into more details.
+
+In fact, this is also what we would recommend you to do when working on real-world problems:
+First quickly build a working pipeline, while taking shortcuts.
+Then, slowly make the pipeline more advanced while you keep on evaluating the approach.
+
+In [episode 3](episodes/3-monitor-the-model.Rmd) we will expand on the concepts that are lightly introduced in this episode.
+Some of these concepts include: how to monitor the training progress and how optimization works.
+
+::: instructor
+It is good to stress the goal for this episode a few times, because learners will usually have a lot of questions like:
+'Why don't we normalize our features' or 'Why do we choose Adam optimizer?'.
+It can be a good idea to park some of these questions for discussion in episode 3 and 4.
+:::
+
 As a reminder below are the steps of the deep learning workflow:
 
 1. Formulate / Outline the problem
@@ -44,14 +58,6 @@ As a reminder below are the steps of the deep learning workflow:
 10. Save model
 
 In this episode we will focus on a minimal example for each of these steps, later episodes will build on this knowledge to go into greater depth for some or all of these steps.
-
-::: instructor
-This episode really aims to go through the whole process once, as quickly as possible. 
-In episode 3 we will expand on all the concepts that are lightly inroduced in episode 2. Some concepts like monitoring the training progress, optimization and learning rate are explained in detail in episode 3.
-It is good to stress this a few times, because learners will usually have a lot of questions like:
-'Why don't we normalize our features' or 'Why do we choose Adam optimizer?'. 
-It can be a good idea to park some of these questions for discussion in episode 3 and 4.
-:::
 
 ::: callout
 ## GPU usage
