@@ -5,103 +5,112 @@ title: Setup
 
 ::::::::::::::::::::::::::::::::::::::: discussion
 
-### Installing Python using Anaconda
+### Installing Python
 
 [Python][python] is a popular language for scientific computing, and a frequent choice
-for machine learning as well. Installing all of its scientific packages
-individually can be a bit difficult, however, so we recommend the installer [Anaconda][anaconda]
-which includes most (but not all) of the software you will need.
+for machine learning as well. 
+To install Python, follow the [Beginner's Guide](https://wiki.python.org/moin/BeginnersGuide/Download) or head straight to the [download page](https://www.python.org/downloads/).
 
-Regardless of how you choose to install it, please make sure you install Python
-version 3.x (e.g., 3.4 is fine). Also, please set up your python environment at
-least a day in advance of the workshop.  If you encounter problems with the
-installation procedure, ask your workshop organizers via e-mail for assistance so
+Please set up your python environment at least a day in advance of the workshop.
+If you encounter problems with the installation procedure, ask your workshop organizers via e-mail for assistance so
 you are ready to go as soon as the workshop begins.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::: spoiler
-
-### Windows
-
-Checkout the [video tutorial][video-windows] or:
-
-1. Open [https://www.anaconda.com/products/distribution][anaconda-distribution]
-with your web browser.
-2. Download the Python 3 installer for Windows.
-3. Double-click the executable and install Python 3 using _MOST_ of the
-   default settings. The only exception is to check the
-   **Make Anaconda the default Python** option.
-
-:::::::::::::::::::::::::
-
-:::::::::::::::: spoiler
-
-### MacOS
-
-Checkout the [video tutorial][video-mac] or:
-
-1. Open [https://www.anaconda.com/products/distribution][anaconda-distribution]
-   with your web browser.
-2. Download the Python 3 installer for OS X.
-   Make sure to use the correct version for your hardware, 
-   i.e. choose the options with "(M1)" if yours is one of the more recent models
-   containing Apple's chip.
-3. Install Python 3 using all of the defaults for installation.
-
-:::::::::::::::::::::::::
-
-
-:::::::::::::::: spoiler
-
-### Linux
-
-Note that the following installation steps require you to work from the shell.
-If you run into any difficulties, please request help before the workshop begins.
-
-1.  Open [https://www.anaconda.com/products/distribution][anaconda-distribution] with your web browser.
-2.  Download the Python 3 installer for Linux.
-3.  Install Python 3 using all of the defaults for installation.
-    a.  Open a terminal window.
-    b.  Navigate to the folder where you downloaded the installer
-    c.  Type
-    ```bash
-    bash Anaconda3-
-    ```
-    and press tab.  The name of the file you just downloaded should appear.
-    d.  Press enter.
-    e.  Follow the text-only prompts.  When the license agreement appears (a colon
-        will be present at the bottom of the screen) hold the down arrow until the
-        bottom of the text. Type `yes` and press enter to approve the license. Press
-        enter again to approve the default location for the files. Type `yes` and
-        press enter to prepend Anaconda to your `PATH` (this makes the Anaconda
-        distribution the default Python).
-
-:::::::::::::::::::::::::
-
 ## Installing the required packages{#packages}
 
-[Conda](https://docs.conda.io/projects/conda/en/latest/) is the package management system associated with [Anaconda](https://anaconda.org) and runs on Windows, macOS and Linux.
-Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system.
+[Pip](https://pip.pypa.io/en/stable/) is the package management system built into Python.
+Pip should be available in your system once you installed Python successfully.
 
-1. Make sure you have an up-to-date version of Conda running.
-See [these instructions](https://docs.anaconda.com/anaconda/install/update-version/) for updating Conda if required.
+1. [Create a virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments) called `dl_workshop`:
 
-2. To create a conda environment called `dl_workshop` with the required packages, open a terminal (Mac/Linux) or Anaconda prompt (Windows) and type the command:
+::: spoiler
+
+### On Linux/macOs
+
 ```bash
-conda create --name dl_workshop python jupyter 'seaborn>=13.0.0' scikit-learn pandas
+python3 -m venv dl_workshop
 ```
 
-3. Activate the newly created environment:
-```
-conda activate dl_workshop
-```
+:::
 
-4. After activating your environment, install tensorflow using pip (python's package manager):
+::: spoiler
+
+### On Windows
+
 ```bash
-pip install tensorflow
+py -m venv dl_workshop
 ```
-Note that modern versions of Tensorflow make Keras available as a module. [pip](https://pip.pypa.io/en/stable/) is the package management system for Python software packages. It is integrated into your local Python installation and runs regardless of your operating system too.
+
+:::
+
+2. Activate the newly created virtual environment
+
+::: spoiler
+
+### On Linux/macOs
+
+```bash
+source dl_workshop/bin/activate
+```
+
+:::
+
+::: spoiler
+
+### On Windows
+
+```bash
+dl_workshop\Scripts\activate
+```
+
+:::
+
+3. Install the required packages:
+
+::: spoiler
+
+### On Linux/macOs
+
+```bash
+python3 -m pip install seaborn scikit-learn pandas
+```
+
+:::
+
+::: spoiler
+
+### On Windows
+
+```bash
+py -m pip install seaborn scikit-learn pandas
+```
+
+:::
+
+4. Install the TensorFlow library:
+
+::: spoiler
+
+### On Linux/macOs
+
+```bash
+python3 -m pip install tensorflow
+```
+
+:::
+
+::: spoiler
+
+### On Windows
+
+```bash
+py -m pip install tensorflow
+```
+
+:::
+
+Note that Tensorflow makes Keras available as a module too.
 
 ### Python package installation troubleshooting
 
