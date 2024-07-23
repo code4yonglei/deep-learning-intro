@@ -34,10 +34,10 @@ We also value any feedback on the lesson!
 
 ## Breaks and Schedule
 
-Episode 2, 3, and 4 in this workshop are relatively long.
+Episode 2, 3, and 4 in this lesson are relatively long.
 We suggest to have a break at least every 90 minutes and to switch the instructor regularly, also within episodes.
 We have added reminders to the longer episodes with suggestions for when to have a switch and/or a break.
 
-There is an [example schedule](schedule.html) with breaks that can be adapted to your workshop.
+There is an [example schedule](schedule.html) with breaks that can be adapted to how you want to teach the lesson.
 
 :::
