@@ -73,7 +73,7 @@ dl_workshop\Scripts\activate
 ### On Linux/macOs
 
 ```bash
-python3 -m pip install seaborn scikit-learn pandas
+python3 -m pip install jupyter seaborn scikit-learn pandas
 ```
 
 :::
@@ -83,7 +83,7 @@ python3 -m pip install seaborn scikit-learn pandas
 ### On Windows
 
 ```bash
-py -m pip install seaborn scikit-learn pandas
+py -m pip install jupyter seaborn scikit-learn pandas
 ```
 
 :::
