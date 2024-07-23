@@ -386,10 +386,27 @@ source</a>
 </figure><hr>
 <h3 id="1-introduction-figure-7">Figure 7</h3>
 <p aria-hidden="true">Image 1 of 1: ‘A diagram of a neural network with 2 inputs, 2 hidden layer neurons, and 1 output.’</p>
-<figure><img src="fig/01_xor_exercise.png" alt="A diagram of a neural network with 2 inputs, 2 hidden layer neurons, and 1 output." width="400" class="figure mx-auto d-block"></figure><hr>
+<li>
+<span class="math inline">\(b_i\)</span> denotes the bias term of
+that specific neuron <img src="fig/01_xor_exercise.png" alt="A diagram of a neural network with 2 inputs, 2 hidden layer neurons, and 1 output." width="400" class="figure">
+</li>
+<hr>
 <h3 id="1-introduction-figure-8">Figure 8</h3>
 <p aria-hidden="true">Image 1 of 1: ‘An example of a deep neural network’</p>
-<figure><img src="fig/01_deep_network.png" alt="An example of a deep neural network" class="figure mx-auto d-block"></figure><hr>
+<figure><img src="fig/01_deep_network.png" alt="An example of a deep neural network" class="figure mx-auto d-block"><div class="figcaption">
+<strong>A visual representation of a deep neural
+network used to detect pedestrians in images.</strong> There are too
+many neurons to draw all of them, so each layer is represented by a
+panel, with values indicating how many neurons are in each dimension of
+the layer. Note that this model has 3-dimensional layers instead of the
+1-dimensional layers that we introduced before. The input (left most)
+layer of the network is an image of 448 x 448 pixels and 3 RGB channels.
+The final (right most) layer of the network outputs a zero or one to
+determine if the input data belongs to the class of data we are
+interested in. The output of the previous layer is the input to the next
+layer. Note that the color coding refers to different layer types that
+will be introduced one by one as we proceed in this lesson.</div>
+</figure><hr>
 <h3 id="1-introduction-figure-9">Figure 9</h3>
 <p aria-hidden="true">Image 1 of 1: ‘Line plot comparing squared error loss function with the Huber loss function where delta = 1, showing the cost of prediction error of both functions equal where y_true - y_pred is between -1 and 1, then rising linearly with the Huber loss function as y_true diverges further from y_pred, as opposed to expontentially for the squared error function.’</p>
 <figure><img src="fig/01_huber_loss.png" alt="Line plot comparing squared error loss function with the Huber loss function where delta = 1, showing the cost of prediction error of both functions equal where y_true - y_pred is between -1 and 1, then rising linearly with the Huber loss function as y_true diverges further from y_pred, as opposed to expontentially for the squared error function." width="400" class="figure mx-auto d-block"></figure><hr>

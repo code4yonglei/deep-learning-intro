@@ -527,8 +527,22 @@ Python, Excel…</em></p>
 </div>
 <div class="section level4">
 <h4 id="optional-calculate-outputs-for-a-network">2. (optional) Calculate outputs for a network<a class="anchor" aria-label="anchor" href="#optional-calculate-outputs-for-a-network"></a></h4>
-<p>Have a look at the following network:</p>
-<figure><img src="fig/01_xor_exercise.png" alt="A diagram of a neural network with 2 inputs, 2 hidden layer neurons, and 1 output." width="400" class="figure mx-auto d-block"></figure><ol style="list-style-type: lower-alpha"><li>Calculate the output of the network for the following combinations
+<p>Have a look at the following network where:</p>
+<ul><li>
+<span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> denote the two inputs of the
+network.</li>
+<li>
+<span class="math inline">\(h_1\)</span> and <span class="math inline">\(h_2\)</span> denote the two neurons in the hidden
+layer. They both have ReLU activation functions.</li>
+<li>
+<span class="math inline">\(h_1\)</span> and <span class="math inline">\(h_2\)</span> denotes the output neuron. It has a
+ReLU activation function.</li>
+<li>The value on the arrows represent the weight associated to that
+input to the neuron.</li>
+<li>
+<span class="math inline">\(b_i\)</span> denotes the bias term of
+that specific neuron <img src="fig/01_xor_exercise.png" alt="A diagram of a neural network with 2 inputs, 2 hidden layer neurons, and 1 output." width="400" class="figure"></li>
+</ul><ol style="list-style-type: lower-alpha"><li>Calculate the output of the network for the following combinations
 of inputs:</li>
 </ol><table class="table"><thead><tr class="header"><th>x1</th>
 <th>x2</th>
@@ -623,16 +637,26 @@ one of many machine learning techniques which are available.</p>
 <p>While traditional “shallow” networks might have had between three and
 five layers, deep networks often have tens or even hundreds of layers.
 This leads to them having millions of individual weights. The image
-below shows a diagram of all the layers (there are too many neurons to
-draw them all) on a deep learning network designed to detect pedestrians
-in images. The input (left most) layer of the network is an image and
-the final (right most) layer of the network outputs a zero or one to
-determine if the input data belongs to the class of data we are
-interested in. This image is from the paper <a href="https://doi.org/10.1155/2018/3518959" class="external-link">“An Efficient Pedestrian
+below shows a diagram of all the layers on a deep learning network
+designed to detect pedestrians in images.</p>
+<p>This image is from the paper <a href="https://doi.org/10.1155/2018/3518959" class="external-link">“An Efficient Pedestrian
 Detection Method Based on YOLOv2” by Zhongmin Liu, Zhicai Chen, Zhanming
 Li, and Wenjin Hu published in Mathematical Problems in Engineering,
 Volume 2018</a></p>
-<figure><img src="fig/01_deep_network.png" alt="An example of a deep neural network" class="figure mx-auto d-block"></figure></div>
+<figure><img src="fig/01_deep_network.png" alt="An example of a deep neural network" class="figure mx-auto d-block"><div class="figcaption">
+<strong>A visual representation of a deep neural
+network used to detect pedestrians in images.</strong> There are too
+many neurons to draw all of them, so each layer is represented by a
+panel, with values indicating how many neurons are in each dimension of
+the layer. Note that this model has 3-dimensional layers instead of the
+1-dimensional layers that we introduced before. The input (left most)
+layer of the network is an image of 448 x 448 pixels and 3 RGB channels.
+The final (right most) layer of the network outputs a zero or one to
+determine if the input data belongs to the class of data we are
+interested in. The output of the previous layer is the input to the next
+layer. Note that the color coding refers to different layer types that
+will be introduced one by one as we proceed in this lesson.</div>
+</figure></div>
 </div>
 </div>
 <div class="section level3">
