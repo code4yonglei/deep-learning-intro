@@ -473,7 +473,7 @@ BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=44920411" cl
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>A</li>
 <li>C</li>
@@ -557,7 +557,7 @@ of inputs:</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="section level4">
 <h4 id="calculate-the-output-for-one-neuron-1">1: calculate the output for one neuron<a class="anchor" aria-label="anchor" href="#calculate-the-output-for-one-neuron-1"></a></h4>
@@ -703,7 +703,7 @@ loss (blue) as a function of <code>y_true - y_pred</code>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="section level4">
 <h4 id="compute-the-mean-squared-error-1">1. ‘Compute the Mean Squared Error’<a class="anchor" aria-label="anchor" href="#compute-the-mean-squared-error-1"></a></h4>
@@ -751,7 +751,7 @@ closer to the expected values.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> BREAK </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>This is a good time for switching instructor and/or a break.</p>
 </div>
@@ -841,7 +841,7 @@ dogs.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>and 5 are the sort of tasks often solved with deep learning.</li>
 <li>is technically possible but solving this with deep learning would be
@@ -1020,7 +1020,7 @@ the data you will use to train the network.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>Discuss your answers with the group or the person next to you.</p>
 </div>
@@ -1076,16 +1076,16 @@ them at a later date.</p>
 </div>
 <div class="section level3">
 <h3 id="installing-keras-and-other-dependencies">Installing Keras and other dependencies<a class="anchor" aria-label="anchor" href="#installing-keras-and-other-dependencies"></a></h3>
-<p>Follow the instructions in the <a href="/#software-setup">setup</a>
-document to install Keras, Seaborn and scikit-learn.</p>
+<p>Follow the <a href="index.html#packages">setup instructions</a> to
+install Keras, Seaborn and scikit-learn.</p>
 </div>
 </section><section><h2 class="section-heading" id="testing-keras-installation">Testing Keras Installation<a class="anchor" aria-label="anchor" href="#testing-keras-installation"></a>
 <a class="anchor" aria-label="anchor" href="#testing-keras-installation"></a></h2>
 <hr class="half-width"><p>Keras is available as a module within TensorFlow, as described in the
-<a href="/#software-setup">setup</a>. Let’s therefore check whether you
-have a suitable version of TensorFlow installed. Open up a new Jupyter
-notebook or interactive python console and run the following
-commands:</p>
+<a href="index.html#packages">setup instructions</a>. Let’s therefore
+check whether you have a suitable version of TensorFlow installed. Open
+up a new Jupyter notebook or interactive python console and run the
+following commands:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
