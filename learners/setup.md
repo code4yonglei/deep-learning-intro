@@ -127,37 +127,6 @@ py -m pip install tensorflow
 
 Note that Tensorflow makes Keras available as a module too.
 
-### Python package installation troubleshooting
-
-:::::::::::::::: spoiler
-
-### Troubleshooting for Windows
-It is possible that Windows users will run into version conflicts. If you are on Windows and get
-errors running the command, you can try installing the packages using pip within a conda environment:
-
-```bash
-conda create -n dl_workshop python jupyter
-conda activate dl_workshop
-pip install tensorflow>=2.5 seaborn scikit-learn pandas
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::: spoiler
-
-### Troubleshooting for Macs with Apple silicon chip
-Newer Macs (from 2020 onwards) often have a different kind of chip, manufactured by Apple instead of Intel.
-This can lead to problems installing Tensorflow.
-If you get errors running the installation command or conda hangs endlessly,
-you probably [need to change the version of Anaconda you have installed](https://www.youtube.com/watch?v=BEUU-icPg78).
-
-1. Uninstall Anaconda
-2. [Download the version of Anaconda for Apple chips][anaconda-distribution] (i.e. the version with "(M1)" in the name)
-   and install it with the default settings
-3. Follow [the instructions above](#packages) to install the required packages
-
-::::::::::::::::::::::::::::
-
 ## Starting Jupyter Lab
 
 We will teach using Python in [Jupyter Lab][jupyter], a programming environment that runs in a web browser.
