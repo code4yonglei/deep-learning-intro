@@ -157,8 +157,13 @@ _Note: You can use whatever you like: brain only, pen&paper, Python, Excel..._
 
 #### 2. (optional) Calculate outputs for a network
 
-Have a look at the following network:
+Have a look at the following network where:
 
+* $X_1$ and $X_2$ denote the two inputs of the network.
+* $h_1$ and $h_2$ denote the two neurons in the hidden layer. They both have ReLU activation functions.
+* $h_1$ and $h_2$ denotes the output neuron. It has a ReLU activation function.
+* The value on the arrows represent the weight associated to that input to the neuron.
+* $b_i$ denotes the bias term of that specific neuron
 ![](fig/01_xor_exercise.png){alt='A diagram of a neural network with 2 inputs, 2 hidden layer neurons, and 1 output.' width='400px'}
 
 a. Calculate the output of the network for the following combinations of inputs:
@@ -208,11 +213,20 @@ But we are not restricted to just using images, any kind of data can be learned 
 The data on which networks are trained usually has to be quite extensive, typically including thousands of examples. For this reason they are not suited to all applications and should be considered just one of many machine learning techniques which are available.
 
 While traditional "shallow" networks might have had between three and five layers, deep networks often have tens or even hundreds of layers. This leads to them having millions of individual weights.
-The image below shows a diagram of all the layers (there are too many neurons to draw them all) on a deep learning network designed to detect pedestrians in images.
-The input (left most) layer of the network is an image and the final (right most) layer of the network outputs a zero or one to determine if the input data belongs to the class of data we are interested in.
-This image is from the paper ["An Efficient Pedestrian Detection Method Based on YOLOv2" by Zhongmin Liu, Zhicai Chen, Zhanming Li, and Wenjin Hu published in Mathematical Problems in Engineering, Volume 2018](https://doi.org/10.1155/2018/3518959)
+The image below shows a diagram of all the layers on a deep learning network designed to detect pedestrians in images.
 
-![](fig/01_deep_network.png){alt='An example of a deep neural network'}
+This image is from the paper ["An Efficient Pedestrian Detection Method Based on YOLOv2"
+by Zhongmin Liu, Zhicai Chen, Zhanming Li, and Wenjin Hu
+published in Mathematical Problems in Engineering, Volume 2018](https://doi.org/10.1155/2018/3518959)
+
+![**A visual representation of a deep neural network used to detect pedestrians in images.**
+There are too many neurons to draw all of them, so each layer is represented by a panel, with values indicating how many neurons are in each dimension of the layer.
+Note that this model has 3-dimensional layers instead of the 1-dimensional layers that we introduced before.
+The input (left most) layer of the network is an image of 448 x 448 pixels and 3 RGB channels.
+The final (right most) layer of the network outputs a zero or one to determine if the input data belongs to the class of data we are interested in.
+The output of the previous layer is the input to the next layer.
+Note that the color coding refers to different layer types that will be introduced one by one
+as we proceed in this lesson.](fig/01_deep_network.png){alt='An example of a deep neural network'}
 
 ### How do neural networks learn?
 What happens in a neural network during the training process?
