@@ -400,7 +400,7 @@ domain.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>You don’t have to use this project as an example. It works best to
 use a suitable deep learning project that you know well and are
@@ -435,7 +435,7 @@ spectral embedding layer drastically, to for example 5 neurons?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>The model summary for the Siamese model is more complex than what we
 have seen so far, but it is basically a repetition of Dense, BatchNorm,
@@ -494,14 +494,14 @@ quality of LLMs language understanding and generation has increased
 tremendously, and since the launch of generative chatbot ChatGPT in 2022
 the power of LLMs is now appreciated by the general public.</p>
 <p>It is becoming more and more feasible to unleash this power in
-scientific research. For example, the authors of <a href="https://doi.org/10.1021/jacs.3c05819" class="external-link">Zheng et al. (2023)</a>
-guided ChatGPT in the automation of extracting chemical information from
-a large amount of research articles. The authors did not implement a
-deep learning model themselves, but instead they designed the right
-input for ChatGPT (called a ‘prompt’) that would produce optimal
-outputs. This is called prompt engineering. A highly simplified example
-of such a prompt would be: “Given compounds X and Y and context Z, what
-are the chemical details of the reaction?”</p>
+scientific research. For example, the authors of <a href="https://doi.org/10.1021/acscentsci.3c01087" class="external-link">Zheng et
+al. (2023)</a> guided ChatGPT in the automation of extracting chemical
+information from a large amount of research articles. The authors did
+not implement a deep learning model themselves, but instead they
+designed the right input for ChatGPT (called a ‘prompt’) that would
+produce optimal outputs. This is called prompt engineering. A highly
+simplified example of such a prompt would be: “Given compounds X and Y
+and context Z, what are the chemical details of the reaction?”</p>
 <p>Developments in LLM research are moving fast, at the end of 2023 the
 newest ChatGPT version <a href="https://openai.com/blog/chatgpt-can-now-see-hear-and-speak" class="external-link">could
 take images and sound as input</a>. In theory, this means that you can
