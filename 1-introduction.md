@@ -456,10 +456,10 @@ Keras also benefits from a very good set of [online documentation](https://keras
 
 ### Installing Keras and other dependencies
 
-Follow the instructions in the [setup](/#software-setup) document to install Keras, Seaborn and scikit-learn.
+Follow the [setup instructions](learners/setup.md#packages) to install Keras, Seaborn and scikit-learn.
 
 ## Testing Keras Installation
-Keras is available as a module within TensorFlow, as described in the [setup](/#software-setup).
+Keras is available as a module within TensorFlow, as described in the [setup instructions](learners/setup.md#packages).
 Let's therefore check whether you have a suitable version of TensorFlow installed.
 Open up a new Jupyter notebook or interactive python console and run the following commands:
 ```python
