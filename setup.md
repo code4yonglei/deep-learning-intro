@@ -86,7 +86,6 @@ Conda should already be available in your system once you installed Anaconda suc
 
 1. Make sure you have an up-to-date version of Conda running.
 See [these instructions](https://docs.anaconda.com/anaconda/install/update-version/) for updating Conda if required.
-{: .callout}
 
 2. To create a conda environment called `dl_workshop` with the required packages, open a terminal (Mac/Linux) or Anaconda prompt (Windows) and type the command:
 ```bash
@@ -104,13 +103,7 @@ pip install tensorflow
 ```
 Note that modern versions of Tensorflow make Keras available as a module. [pip](https://pip.pypa.io/en/stable/) is the package management system for Python software packages. It is integrated into your local Python installation and runs regardless of your operating system too.
 
-::::::::::::::::::::::::::::::::::::::: discussion
-
 ### Python package installation troubleshooting
-
-
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::: spoiler
 
