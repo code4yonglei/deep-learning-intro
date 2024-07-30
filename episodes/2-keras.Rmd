@@ -548,7 +548,7 @@ When the training process does not go well:
 
 3. (optional) Something went wrong here during training. What could be the problem, and how do you see that in the training curve?
 Also compare the range on the y-axis with the previous training curve.
-![](../fig/02_bad_training_history_1.png){alt='Very jittery training curve with the loss value jumping back and forth between 2 and 4. The range of the y-axis is from 2 to 4, whereas in the previous training curve it was from 0 to 2. The loss seems to decrease a litle bit, but not as much as compared to the previous plot where it dropped to almost 0. The minimum loss in the end is somewhere around 2.'}
+![][bad-training-curve]
 
 :::: solution
 ## Solution
@@ -774,16 +774,19 @@ Length: 69, dtype: object
 {alt='Illustration of the three species of penguins found in the Palmer Archipelago, Antarctica: Chinstrap, Gentoo and Adele'}
 
 [penguin-beaks]: fig/culmen_depth.png "Culmen Depth"
-{alt='Illustration of the beak dimensions called culmen length and culmen depth in the dataset'}
+{alt='Illustration of how the beak dimensions were measured. In the raw data, bill dimensions are recorded as "culmen length" and "culmen depth". The culmen is the dorsal ridge atop the bill.'}
 
 [pairplot]: fig/pairplot.png "Pair Plot"
-{alt='Pair plot showing the separability of the three species of penguin for combinations of dataset attributes'}
+{alt='Grid of scatter plots and histograms comparing observed values of the four physicial attributes (features) measured in the penguins sampled. Scatter plots illustrate the distribution of values observed for each pair of features. On the diagonal, where one feature would be compared with itself, histograms are displayed that show the distribution of values observed for that feature, coloured according to the species of the individual sampled. The pair plot shows distinct but overlapping clusters of data points representing the different species, with no pair of features providing a clean separation of clusters on its own.'}
 
 [sex_pairplot]: fig/02_sex_pairplot.png "Pair plot grouped by sex"
-{alt='Pair plot showing the separability of the two sexes of penguin for combinations of dataset attributes'}
+{alt='Grid of scatter plots and histograms comparing observed values of the four physicial attributes (features) measured in the penguins sampled, with data points coloured according to the sex of the individual sampled. The pair plot shows similarly-shaped distribution of values observed for each feature in male and female penguins, with the distribution of measurements for females skewed towards smaller values.'}
 
 [training_curve]: fig/02_training_curve.png "Training Curve"
 {alt='Training loss curve of the neural network training which depicts exponential decrease in loss before a plateau from ~10 epochs'}
+
+[bad-training-curve]: ../fig/02_bad_training_history_1.png "Training Curve Gone Wrong"
+{alt='Very jittery training curve with the loss value jumping back and forth between 2 and 4. The range of the y-axis is from 2 to 4, whereas in the previous training curve it was from 0 to 2. The loss seems to decrease a litle bit, but not as much as compared to the previous plot where it dropped to almost 0. The minimum loss in the end is somewhere around 2.'}
 
 [confusion_matrix]: fig/confusion_matrix.png "Confusion Matrix"
 {alt='Confusion matrix of the test set with high accuracy for Adelie and Gentoo classification and no correctly predicted Chinstrap'}
