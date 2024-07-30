@@ -405,7 +405,7 @@ depth for some or all of these steps.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>This episode really aims to go through the whole process once, as
 quickly as possible. In episode 3 we will expand on all the concepts
@@ -463,7 +463,7 @@ three penguin species observed on three islands in the Palmer
 Archipelago, Antarctica. The physical attributes measured are flipper
 length, beak length, beak width, body mass, and sex.</p>
 <figure><img src="../fig/palmer_penguins.png" title="Palmer Penguins" alt="Illustration of the three species of penguins found in the Palmer Archipelago, Antarctica: Chinstrap, Gentoo and Adele" class="figure mx-auto d-block"><div class="figcaption"><em>Artwork by <span class="citation">@allison_horst</span></em></div>
-</figure><figure><img src="../fig/culmen_depth.png" title="Culmen Depth" alt="Illustration of the beak dimensions called culmen length and culmen depth in the dataset" class="figure mx-auto d-block"><div class="figcaption"><em>Artwork by <span class="citation">@allison_horst</span></em></div>
+</figure><figure><img src="../fig/culmen_depth.png" title="Culmen Depth" alt='Illustration of how the beak dimensions were measured. In the raw data, bill dimensions are recorded as "culmen length" and "culmen depth". The culmen is the dorsal ridge atop the bill.' class="figure mx-auto d-block"><div class="figcaption"><em>Artwork by <span class="citation">@allison_horst</span></em></div>
 </figure><p>These data were collected from 2007 - 2009 by Dr. Kristen Gorman with
 the <a href="https://lternet.edu/site/palmer-antarctica-lter/" class="external-link">Palmer
 Station Long Term Ecological Research Program</a>, part of the <a href="https://lternet.edu/" class="external-link">US Long Term Ecological Research
@@ -581,7 +581,7 @@ column.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>sns.pairplot(penguins, hue<span class="op">=</span><span class="st">"species"</span>)</span></code></pre>
 </div>
-<figure><img src="../fig/pairplot.png" title="Pair Plot" alt="Pair plot showing the separability of the three species of penguin for combinations of dataset attributes" class="figure mx-auto d-block"></figure><div id="pairplot" class="callout challenge">
+<figure><img src="../fig/pairplot.png" title="Pair Plot" alt="Grid of scatter plots and histograms comparing observed values of the four physicial attributes (features) measured in the penguins sampled. Scatter plots illustrate the distribution of values observed for each pair of features. On the diagonal, where one feature would be compared with itself, histograms are displayed that show the distribution of values observed for that feature, coloured according to the species of the individual sampled. The pair plot shows distinct but overlapping clusters of data points representing the different species, with no pair of features providing a clean separation of clusters on its own." class="figure mx-auto d-block"></figure><div id="pairplot" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -606,7 +606,7 @@ of features distinguishes the two sexes best?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul><li>The plots show that the green class, Gentoo is somewhat more easily
 distinguishable from the other two.</li>
@@ -619,7 +619,7 @@ and flipper length).</li>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>sns.pairplot(penguins, hue<span class="op">=</span><span class="st">'sex'</span>)</span></code></pre>
 </div>
-<figure><img src="../fig/02_sex_pairplot.png" title="Pair plot grouped by sex" alt="Pair plot showing the separability of the two sexes of penguin for combinations of dataset attributes" class="figure mx-auto d-block"></figure><p>You see that for each species females have smaller bills and
+<figure><img src="../fig/02_sex_pairplot.png" title="Pair plot grouped by sex" alt="Grid of scatter plots and histograms comparing observed values of the four physicial attributes (features) measured in the penguins sampled, with data points coloured according to the sex of the individual sampled. The pair plot shows similarly-shaped distribution of values observed for each feature in male and female penguins, with the distribution of measurements for females skewed towards smaller values." class="figure mx-auto d-block"></figure><p>You see that for each species females have smaller bills and
 flippers, as well as a smaller body mass. You would need a combination
 of the species and the numerical features to successfully distinguish
 males from females. The combination of <code>bill_depth_mm</code> and
@@ -732,7 +732,7 @@ encoded the target class?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>C: 3, one for each output variable class</p>
 </div>
@@ -784,7 +784,7 @@ species) as the dataset.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> BREAK </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>This is a good time for switching instructor and/or a break.</p>
 </div>
@@ -953,7 +953,7 @@ network</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Have a look at the output of <code>model.summary()</code>:</p>
 <div class="codewrapper sourceCode" id="cb18">
@@ -1129,7 +1129,7 @@ test set?</li>
 </ol><p>When the training process does not go well:</p>
 <ol start="3" style="list-style-type: decimal"><li>(optional) Something went wrong here during training. What could be
 the problem, and how do you see that in the training curve? Also compare
-the range on the y-axis with the previous training curve. <img src="../fig/02_bad_training_history_1.png" alt="Very jittery training curve with the loss value jumping back and forth between 2 and 4. The range of the y-axis is from 2 to 4, whereas in the previous training curve it was from 0 to 2. The loss seems to decrease a litle bit, but not as much as compared to the previous plot where it dropped to almost 0. The minimum loss in the end is somewhere around 2." class="figure"></li>
+the range on the y-axis with the previous training curve. <img src="../fig/02_bad_training_history_1.png" title="Training Curve Gone Wrong" alt="Very jittery training curve with the loss value jumping back and forth between 2 and 4. The range of the y-axis is from 2 to 4, whereas in the previous training curve it was from 0 to 2. The loss seems to decrease a litle bit, but not as much as compared to the previous plot where it dropped to almost 0. The minimum loss in the end is somewhere around 2." class="figure"></li>
 </ol></div>
 </div>
 </div>
@@ -1138,7 +1138,7 @@ the range on the y-axis with the previous training curve. <img src="../fig/02_ba
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>The training loss decreases quickly. It drops in a smooth line with
 little jitter. This is ideal for a training curve.</li>
@@ -1261,7 +1261,7 @@ Length: 69, dtype: object</code></pre>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor3" aria-expanded="false" aria-controls="collapseInstructor3">
   <h3 class="accordion-header" id="headingInstructor3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> BREAK </h3>
 </button>
-<div id="collapseInstructor3" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor3" aria-labelledby="headingInstructor3">
+<div id="collapseInstructor3" class="accordion-collapse collapse" aria-labelledby="headingInstructor3" data-bs-parent="#accordionInstructor3">
 <div class="accordion-body">
 <p>This is a good time for switching instructor and/or a break.</p>
 </div>
@@ -1347,7 +1347,7 @@ visualize a confusion matrix.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The confusion matrix shows that the predictions for Adelie and Gentoo
 are decent, but could be improved. However, Chinstrap is not predicted
