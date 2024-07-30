@@ -330,14 +330,14 @@ formats.</p>
 </section><section><h2 class="section-heading" id="optional-part---prediction-uncertainty-using-monte-carlo-dropout">Optional part - prediction uncertainty using Monte-Carlo
 Dropout<a class="anchor" aria-label="anchor" href="#optional-part---prediction-uncertainty-using-monte-carlo-dropout"></a>
 <a class="anchor" aria-label="anchor" href="#optional-part---prediction-uncertainty-using-monte-carlo-dropout"></a></h2>
-<hr class="half-width"><p>Depending on the data and the question asked, model predictions can
-be highly accuracte. Or, as in the present case, show a high degree of
-error. In both cases, however, it often is highly relevant to not get
-model predictions but also an estimate of how reliable those predictions
-are. The last years, this has been a very dynamic, rapidly growing area
-and there are many different ways to do uncertainty evaluation in deep
-learning. Here we want to present a very versatile and easy-to-implement
-method: <strong>Monte-Carlo Dropout</strong> (original reference: <a href="https://arxiv.org/abs/1506.02142" class="external-link uri">https://arxiv.org/abs/1506.02142</a>).</p>
+<hr class="half-width"><p>Depending on the data and the question asked model predictions can be
+highly accurate or, as in the present case, show a high degree of error.
+In both cases it often is highly relevant to get both model predictions
+an an estimate of how reliable those predictions are. Over the last
+years this has been a very dynamic, rapidly growing area and there are
+many different ways to do uncertainty evaluation in deep learning. Here
+we want to present a very versatile and easy-to-implement method:
+<strong>Monte-Carlo Dropout</strong> (original reference: <a href="https://arxiv.org/abs/1506.02142" class="external-link uri">https://arxiv.org/abs/1506.02142</a>).</p>
 <p>The name of the technique refers to a very common regularization
 technique: <strong>Dropout</strong>. So let’s first introduce this:</p>
 </section><section><h2 class="section-heading" id="dropout-make-it-harder-to-memorize-things">Dropout: make it harder to memorize things<a class="anchor" aria-label="anchor" href="#dropout-make-it-harder-to-memorize-things"></a>
@@ -435,21 +435,21 @@ our new model and plot the losses:</p>
 <span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>plt.ylabel(<span class="st">"RMSE"</span>)</span></code></pre>
 </div>
 <figure><img src="fig/03_training_history_4_rmse_dropout.png" alt="Output of plotting sample" class="figure mx-auto d-block"><div class="figcaption">Output of plotting sample</div>
-</figure><p>In this setting overfitting seems to be pervented succesfully. The
-overall results though have not improved (at least not by much). Above
-we have used dropout to randomly turn off network nodes during training.
-When doing predictions, dropout is automatically deactivated and all
-nodes stay active. Each time you run the same input data through the
-same trained model, the prediciton will be exactly the same.</p>
+</figure><p>In this setting overfitting seems to be prevented, however the
+overall results have not improved significantly. Above we have used
+dropout to randomly turn off network nodes during training. When doing
+predictions, dropout is automatically deactivated and all nodes stay
+active. Each time you run the same input data through the same trained
+model the prediction will be exactly the same.</p>
 <p>Monte-Carlo Dropout relies on a simply change: dropout will remain
 active during prediction! This means that each time a prediction step is
-done, the model will look differently because a fraction of all nodes
-will be turned off randomly. One can interpret all of those random
-variations as individual models. Monte-Carlo Dropout now makes use of
-this fact and collects many different predictions instead of only one.
-At the end this collection of predictions can be combined to a mean (or
-a median) prediction. And the variation of all predictions can tell
-something about the model’s uncertainty.</p>
+done, the model will look different because a fraction of all nodes will
+be turned off randomly. One can interpret all of those random variations
+as individual models. Monte-Carlo Dropout now makes use of this fact and
+collects many different predictions instead of only one. At the end this
+collection of predictions can be combined to a mean (or a median)
+prediction. The variation of all the predictions can tell us something
+about the model’s uncertainty.</p>
 <p>A simple (and a bit hacky) way to enforce dropout layers to remain
 active is to add <code>training=True</code> to the model:</p>
 <div class="codewrapper sourceCode" id="cb4">
@@ -487,7 +487,7 @@ active is to add <code>training=True</code> to the model:</p>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                    verbose <span class="op">=</span> <span class="dv">2</span>)</span></code></pre>
 </div>
 <p>But when now doing predictions, things will look different. Let us do
-two predictions an compare the results.</p>
+two predictions and compare the results.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
