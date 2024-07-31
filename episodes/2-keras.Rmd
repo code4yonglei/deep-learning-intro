@@ -27,9 +27,23 @@ exercises: 50
 ## Introduction
 In this episode we will learn how to create and train a neural network using Keras to solve a simple classification task.
 
-The goal of this episode is to quickly get your hands dirty in actually defining and training a neural network, without going into depth of how neural networks work on a technical or mathematical level.
-We want you to go through the most commonly used deep learning workflow that was covered
-in the introduction.
+The goal of this episode is to quickly get your hands dirty in actually defining and training a neural network,
+without going into depth of how neural networks work on a technical or mathematical level.
+We want you to go through the full deep learning workflow once before going into more details.
+
+In fact, this is also what we would recommend you to do when working on real-world problems:
+First quickly build a working pipeline, while taking shortcuts.
+Then, slowly make the pipeline more advanced while you keep on evaluating the approach.
+
+In [episode 3](episodes/3-monitor-the-model.Rmd) we will expand on the concepts that are lightly introduced in this episode.
+Some of these concepts include: how to monitor the training progress and how optimization works.
+
+::: instructor
+It is good to stress the goal for this episode a few times, because learners will usually have a lot of questions like:
+'Why don't we normalize our features' or 'Why do we choose Adam optimizer?'.
+It can be a good idea to park some of these questions for discussion in episode 3 and 4.
+:::
+
 As a reminder below are the steps of the deep learning workflow:
 
 1. Formulate / Outline the problem
@@ -44,14 +58,6 @@ As a reminder below are the steps of the deep learning workflow:
 10. Save model
 
 In this episode we will focus on a minimal example for each of these steps, later episodes will build on this knowledge to go into greater depth for some or all of these steps.
-
-::: instructor
-This episode really aims to go through the whole process once, as quickly as possible. 
-In episode 3 we will expand on all the concepts that are lightly inroduced in episode 2. Some concepts like monitoring the training progress, optimization and learning rate are explained in detail in episode 3.
-It is good to stress this a few times, because learners will usually have a lot of questions like:
-'Why don't we normalize our features' or 'Why do we choose Adam optimizer?'. 
-It can be a good idea to park some of these questions for discussion in episode 3 and 4.
-:::
 
 ::: callout
 ## GPU usage
@@ -82,7 +88,7 @@ The physical attributes measured are flipper length, beak length, beak width, bo
 ![*Artwork by @allison_horst*][penguin-beaks]
 
 
-These data were collected from 2007 - 2009 by Dr. Kristen Gorman with the [Palmer Station Long Term Ecological Research Program](https://pal.lternet.edu/), part of the [US Long Term Ecological Research Network](https://lternet.edu/). The data were imported directly from the [Environmental Data Initiative](https://environmentaldatainitiative.org/) (EDI) Data Portal, and are available for use by CC0 license ("No Rights Reserved") in accordance with the [Palmer Station Data Policy](https://pal.lternet.edu/data/policies).
+These data were collected from 2007 - 2009 by Dr. Kristen Gorman with the [Palmer Station Long Term Ecological Research Program](https://lternet.edu/site/palmer-antarctica-lter/), part of the [US Long Term Ecological Research Network](https://lternet.edu/). The data were imported directly from the [Environmental Data Initiative](https://edirepository.org/) (EDI) Data Portal, and are available for use by CC0 license ("No Rights Reserved") in accordance with the [Palmer Station Data Policy](https://lternet.edu/data-access-policy/).
 
 ## 2. Identify inputs and outputs
 To identify the inputs and outputs that we will use to design the neural network we need to familiarize
@@ -297,7 +303,7 @@ We do this as follows:
 from tensorflow import keras
 ```
 
-For this class it is useful if everyone gets the same results from their training.
+For this episode it is useful if everyone gets the same results from their training.
 Keras uses a random number generator at certain points during its execution.
 Therefore we will need to set two random seeds, one for numpy and one for tensorflow:
 ```python
@@ -308,8 +314,7 @@ keras.utils.set_random_seed(2)
 
 ### Build a neural network from scratch
 
-Now we will build a neural network from scratch, and although this sounds like
-a daunting task, with Keras it is actually surprisingly straightforward.
+Now we will build a neural network from scratch, which is surprisingly straightforward using Keras.
 
 With Keras you compose a neural network by creating layers and linking them
 together. For now we will only use one type of layer called a fully connected
@@ -426,7 +431,11 @@ Trainable params: 83
 Non-trainable params: 0
 _________________________________________________________________
 ```
-The model has 83 trainable parameters.
+The model has 83 trainable parameters. Each of the 10 neurons in the in the `dense` hidden layer is connected to each of 
+the 4 inputs in the input layer resulting in 40 weights that can be trained. The 10 neurons in the hidden layer are also 
+connected to each of the 3 outputs in the `dense_1` output layer, resulting in a further 30 weights that can be trained. 
+By default `Dense` layers in Keras also contain 1 bias term for each neuron, resulting in a further 10 bias values for the
+hidden layer and 3 bias terms for the output layer. `40+30+10+3=83` trainable parameters.
 
 If you increase the number of neurons in the hidden layer the number of
 trainable parameters in both the hidden and output layer increases or
@@ -477,7 +486,7 @@ function that we will use during training.
 This loss function tells the training algorithm how wrong, or how 'far away' from the true
 value the predicted value is.
 
-For the one-hot encoding that we selected before a fitting loss function is the Categorical Crossentropy loss.
+For the one-hot encoding that we selected earlier a suitable loss function is the Categorical Crossentropy loss.
 In Keras this is implemented in the `keras.losses.CategoricalCrossentropy` class.
 This loss function works well in combination with the `softmax` activation function
 we chose earlier.
@@ -545,7 +554,7 @@ When the training process does not go well:
 
 3. (optional) Something went wrong here during training. What could be the problem, and how do you see that in the training curve?
 Also compare the range on the y-axis with the previous training curve.
-![](../fig/02_bad_training_history_1.png){alt='Very jittery training curve with the loss value jumping back and forth between 2 and 4. The range of the y-axis is from 2 to 4, whereas in the previous training curve it was from 0 to 2. The loss seems to decrease a litle bit, but not as much as compared to the previous plot where it dropped to almost 0. The minimum loss in the end is somewhere around 2.'}
+![][bad-training-curve]
 
 :::: solution
 ## Solution
@@ -663,7 +672,7 @@ print(matrix)
  [ 6  0 19]]
 ```
 
-Unfortunately, this matrix is kinda hard to read. Its not clear which column and which row
+Unfortunately, this matrix is not immediately understandable. Its not clear which column and which row
 corresponds to which species.
 So let's convert it to a pandas dataframe with its index and columns set to the species
 as follows:
@@ -771,16 +780,19 @@ Length: 69, dtype: object
 {alt='Illustration of the three species of penguins found in the Palmer Archipelago, Antarctica: Chinstrap, Gentoo and Adele'}
 
 [penguin-beaks]: fig/culmen_depth.png "Culmen Depth"
-{alt='Illustration of the beak dimensions called culmen length and culmen depth in the dataset'}
+{alt='Illustration of how the beak dimensions were measured. In the raw data, bill dimensions are recorded as "culmen length" and "culmen depth". The culmen is the dorsal ridge atop the bill.'}
 
 [pairplot]: fig/pairplot.png "Pair Plot"
-{alt='Pair plot showing the separability of the three species of penguin for combinations of dataset attributes'}
+{alt='Grid of scatter plots and histograms comparing observed values of the four physicial attributes (features) measured in the penguins sampled. Scatter plots illustrate the distribution of values observed for each pair of features. On the diagonal, where one feature would be compared with itself, histograms are displayed that show the distribution of values observed for that feature, coloured according to the species of the individual sampled. The pair plot shows distinct but overlapping clusters of data points representing the different species, with no pair of features providing a clean separation of clusters on its own.'}
 
 [sex_pairplot]: fig/02_sex_pairplot.png "Pair plot grouped by sex"
-{alt='Pair plot showing the separability of the two sexes of penguin for combinations of dataset attributes'}
+{alt='Grid of scatter plots and histograms comparing observed values of the four physicial attributes (features) measured in the penguins sampled, with data points coloured according to the sex of the individual sampled. The pair plot shows similarly-shaped distribution of values observed for each feature in male and female penguins, with the distribution of measurements for females skewed towards smaller values.'}
 
 [training_curve]: fig/02_training_curve.png "Training Curve"
 {alt='Training loss curve of the neural network training which depicts exponential decrease in loss before a plateau from ~10 epochs'}
+
+[bad-training-curve]: ../fig/02_bad_training_history_1.png "Training Curve Gone Wrong"
+{alt='Very jittery training curve with the loss value jumping back and forth between 2 and 4. The range of the y-axis is from 2 to 4, whereas in the previous training curve it was from 0 to 2. The loss seems to decrease a litle bit, but not as much as compared to the previous plot where it dropped to almost 0. The minimum loss in the end is somewhere around 2.'}
 
 [confusion_matrix]: fig/confusion_matrix.png "Confusion Matrix"
 {alt='Confusion matrix of the test set with high accuracy for Adelie and Gentoo classification and no correctly predicted Chinstrap'}
