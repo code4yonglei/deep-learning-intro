@@ -76,29 +76,7 @@ Remember that you need to activate your environment every time you restart your 
 ### On Linux/macOs
 
 ```bash
-python3 -m pip install jupyter seaborn scikit-learn pandas
-```
-
-:::
-
-::: spoiler
-
-### On Windows
-
-```bash
-py -m pip install jupyter seaborn scikit-learn pandas
-```
-
-:::
-
-4. Install the TensorFlow library:
-
-::: spoiler
-
-### On Linux/macOs
-
-```bash
-python3 -m pip install tensorflow
+python3 -m pip install jupyter seaborn scikit-learn pandas tensorflow
 ```
 
 ::: spoiler
@@ -123,7 +101,7 @@ python -m pip install tensorflow-metal
 ### On Windows
 
 ```bash
-py -m pip install tensorflow
+py -m pip install jupyter seaborn scikit-learn pandas tensorflow
 ```
 
 :::
