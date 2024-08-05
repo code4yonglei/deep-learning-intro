@@ -8,7 +8,7 @@ title: Setup
 ### Installing Python
 
 [Python][python] is a popular language for scientific computing, and a frequent choice
-for machine learning as well. 
+for machine learning as well.
 To install Python, follow the [Beginner's Guide](https://wiki.python.org/moin/BeginnersGuide/Download) or head straight to the [download page](https://www.python.org/downloads/).
 
 Please set up your python environment at least a day in advance of the workshop.
@@ -67,7 +67,6 @@ dl_workshop\Scripts\activate
 :::
 
 Remember that you need to activate your environment every time you restart your terminal!
-
 
 3. Install the required packages:
 
@@ -163,16 +162,8 @@ Alternatively you can use [Google colab](https://colab.research.google.com/). If
 
 Download the [weather dataset prediction csv][weatherdata] and [Dollar street dataset (4 files in total)][dollar-street]
 
-[anaconda]: https://www.anaconda.com/products/individual
-[anaconda-distribution]: https://www.anaconda.com/products/distribution
 [dollar-street]: https://zenodo.org/api/records/10970014/files-archive
 [jupyter]: http://jupyter.org/
 [jupyter-install]: http://jupyter.readthedocs.io/en/latest/install.html#optional-for-experienced-python-developers-installing-jupyter-with-pip
 [python]: https://python.org
-[video-mac]: https://www.youtube.com/watch?v=TcSAln46u9U
-[video-windows]: https://www.youtube.com/watch?v=xxQ0mzZ8UvA
-[penguindata]: https://zenodo.org/record/3960218/files/allisonhorst/palmerpenguins-v0.1.0.zip?download=1
 [weatherdata]: https://zenodo.org/record/5071376/files/weather_prediction_dataset_light.csv?download=1
-[weatherbbqdata]: https://zenodo.org/record/4980359/files/weather_prediction_bbq_labels.csv?download=1
-
-
