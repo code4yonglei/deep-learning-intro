@@ -22,6 +22,8 @@ you are ready to go as soon as the workshop begins.
 [Pip](https://pip.pypa.io/en/stable/) is the package management system built into Python.
 Pip should be available in your system once you installed Python successfully.
 
+Open a terminal (Mac/Linux) or Command Prompt (Windows) and run the following commands.
+
 1. Create a [virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments) called `dl_workshop`:
 
 ::: spoiler
@@ -114,14 +116,14 @@ Jupyter Lab is compatible with Firefox, Chrome, Safari and Chromium-based browse
 Note that Internet Explorer and Edge are *not* supported.
 See the [Jupyter Lab documentation](https://jupyterlab.readthedocs.io/en/latest/getting_started/accessibility.html#compatibility-with-browsers-and-assistive-technology) for an up-to-date list of supported browsers.
 
-To start Jupyter Lab, open a terminal (Mac/Linux) or command-line shell (Windows) and type the command:
+To start Jupyter Lab, open a terminal (Mac/Linux) or Command Prompt (Windows) and type the command:
 
 ```shell
 jupyter lab
 ```
 
-To start the Python interpreter without Jupyter Lab, open a terminal (Mac/Linux), command-line shell (Windows)
-or git bash and type the command:
+To start the Python interpreter without Jupyter Lab, open a terminal (Mac/Linux) or Command Prompt (Windows)
+and type the command:
 
 ```shell
 python
