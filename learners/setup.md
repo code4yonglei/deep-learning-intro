@@ -114,20 +114,16 @@ Jupyter Lab is compatible with Firefox, Chrome, Safari and Chromium-based browse
 Note that Internet Explorer and Edge are *not* supported.
 See the [Jupyter Lab documentation](https://jupyterlab.readthedocs.io/en/latest/getting_started/accessibility.html#compatibility-with-browsers-and-assistive-technology) for an up-to-date list of supported browsers.
 
-If you installed Python using Anaconda, Jupyter should already be on your system. If
-you did not use Anaconda, use the Python package manager pip
-(see the [Jupyter website][jupyter-install] for details.)
+To start Jupyter Lab, open a terminal (Mac/Linux) or command-line shell (Windows) and type the command:
 
-To start Jupyter Lab, open a terminal (Mac/Linux) or Anaconda prompt (Windows) and type the command:
-
-```bash
+```shell
 jupyter lab
 ```
 
-To start the Python interpreter without Jupyter Lab, open a terminal (Mac/Linux) or Anaconda prompt (Windows)
+To start the Python interpreter without Jupyter Lab, open a terminal (Mac/Linux), command-line shell (Windows)
 or git bash and type the command:
 
-```bash
+```shell
 python
 ```
 
