@@ -28,7 +28,7 @@ Pip should be available in your system once you installed Python successfully.
 
 ### On Linux/macOs
 
-```bash
+```shell
 python3 -m venv dl_workshop
 ```
 
@@ -38,7 +38,7 @@ python3 -m venv dl_workshop
 
 ### On Windows
 
-```bash
+```shell
 py -m venv dl_workshop
 ```
 
@@ -50,7 +50,7 @@ py -m venv dl_workshop
 
 ### On Linux/macOs
 
-```bash
+```shell
 source dl_workshop/bin/activate
 ```
 
@@ -60,7 +60,7 @@ source dl_workshop/bin/activate
 
 ### On Windows
 
-```bash
+```shell
 dl_workshop\Scripts\activate
 ```
 
@@ -74,7 +74,7 @@ Remember that you need to activate your environment every time you restart your 
 
 ### On Linux/macOs
 
-```bash
+```shell
 python3 -m pip install jupyter seaborn scikit-learn pandas tensorflow
 ```
 
@@ -88,7 +88,7 @@ This is not supported by the standard TensorFlow installation, and not required 
 
 Nevertheless, you can install the on top of the standard `tensorflow`:
 
-```bash
+```shell
 python -m pip install tensorflow-metal
 ```
 
@@ -99,7 +99,7 @@ python -m pip install tensorflow-metal
 
 ### On Windows
 
-```bash
+```shell
 py -m pip install jupyter seaborn scikit-learn pandas tensorflow
 ```
 
