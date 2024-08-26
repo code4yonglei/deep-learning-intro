@@ -10,7 +10,7 @@ Do you want to teach deep learning? This material is open-source and freely avai
 Are you planning on using our material in your teaching? 
 We would love to help you prepare to teach the lesson and receive feedback on how it could be further improved, based on your experience in the workshop.
 
-You can notify us that you plan to teach this lesson by creating an issue in this repository or by sending an email to deep-learning-lesson-dev@esciencecenter.nl. Also, it would great if you can update [this overview of all workshops taught with this lesson material](workshops). This helps us show the impact of developing open-source lessons to our funders.
+You can notify us that you plan to teach this lesson by creating an issue in this repository or by sending an email to deep-learning-lesson-dev@esciencecenter.nl. Also, it would great if you can update [this overview of all workshops taught with this lesson material](workshops.md). This helps us show the impact of developing open-source lessons to our funders.
 
 ## Lesson Design
 The design of this lesson can be found in the [lesson design](https://carpentries-incubator.github.io/deep-learning-intro/design.html)
