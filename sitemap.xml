@@ -112,6 +112,9 @@
     <loc>https://carpentries-incubator.github.io/deep-learning-intro/instructor/survey-templates.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/deep-learning-intro/instructor/workshops.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/deep-learning-intro/instructor-notes.html</loc>
   </url>
   <url>
@@ -131,5 +134,8 @@
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/deep-learning-intro/survey-templates.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/deep-learning-intro/workshops.html</loc>
   </url>
 </urlset>
