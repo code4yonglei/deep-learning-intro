@@ -5,7 +5,7 @@
 | 2022-02-28        | EMBL Heidelberg             | Online                     |          |
 | 2022-09-26        | Netherlands eScience Center | Amsterdam, The Netherlands |          |
 | 2022-11-16        | EMBL Heidelberg             | Heidelberg, Germany        |          |
-| 2022-12-05        | Netherlqnds eScience Center | Amsterdam, The Netherlands |          |
+| 2022-12-05        | Netherlands eScience Center | Amsterdam, The Netherlands |          |
 | 2023-03-25        | University of Auckland      | Online                     |          |
 | 2023-05-23        | Netherlands eScience Center | Amsterdam, The Netherlands |          |
 | 2023-05-30        | UW-Madison                  | Madison, USA               |          |
