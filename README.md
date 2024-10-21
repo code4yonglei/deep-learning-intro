@@ -21,7 +21,7 @@ deep learning. In addition, we expect them to know basics of statistics and mach
 
 ## Lesson development sprints
 We regularly host lesson development sprints, in which we work together at the lesson.
-The next one is scheduled for the 22nd and 23rd of July 2024. We kickoff with an online meeting at 10:00 CEST.
+The next one is scheduled for the 13th and 14th of January 2025. We kickoff with an online meeting at 10:00 CEST.
 If you want to join (you are very welcome to join even if you have never contributed so far) send an email to deep-learning-lesson-dev@esciencecenter.nl .
 
 ## Contributing
