@@ -109,6 +109,10 @@ data.shape
 This will give both the number of samples (3654) and the number of features (89 + month +
 date).
 
+For any row `i`, we will use the values of all fields except `MONTH` and `DATE` as the input features `X`.
+We want to use them to forecast the number of sunshine hours of the next day,
+hence we use the value of the field `BASEL_sunshine` in the *subsequent* row (`i+1`) as the label that we want to predict (`y`).
+
 ## 3. Prepare data
 
 ### Select a subset and split into data (X) and labels (y)
