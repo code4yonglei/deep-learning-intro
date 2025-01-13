@@ -322,7 +322,7 @@ scratch</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Transfer learning</h1>
-        <p>Last updated on 2024-12-03 |
+        <p>Last updated on 2025-01-13 |
 
         <a href="https://github.com/carpentries-incubator/deep-learning-intro/edit/main/episodes/5-transfer-learning.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -411,7 +411,8 @@ images:</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># input tensor</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(train_images.shape[<span class="dv">1</span>:])</span></code></pre>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(train_images.shape[<span class="dv">1</span>:])</span></code></pre>
 </div>
 <p>Our images are 64 x 64 pixels, whereas the pre-trained model that we
 will use was trained on images of 160 x 160 pixels. To deal with this,
@@ -421,9 +422,10 @@ during training and prediction.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># upscale layer</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>method <span class="op">=</span> tf.image.ResizeMethod.BILINEAR</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>upscale <span class="op">=</span> keras.layers.Lambda(</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="kw">lambda</span> x: tf.image.resize_with_pad(x, <span class="dv">160</span>, <span class="dv">160</span>, method<span class="op">=</span>method))(inputs)</span></code></pre>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>method <span class="op">=</span> tf.image.ResizeMethod.BILINEAR</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>upscale <span class="op">=</span> keras.layers.Lambda(</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="kw">lambda</span> x: tf.image.resize_with_pad(x, <span class="dv">160</span>, <span class="dv">160</span>, method<span class="op">=</span>method))(inputs)</span></code></pre>
 </div>
 <p>From the <code>keras.applications</code> module we use the
 <code>DenseNet121</code> architecture. This architecture was proposed by
@@ -444,6 +446,32 @@ was designed to work well on image classification tasks.</p>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                                            input_tensor<span class="op">=</span>upscale,</span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                                            input_shape<span class="op">=</span>(<span class="dv">160</span>,<span class="dv">160</span>,<span class="dv">3</span>),</span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                                            )</span></code></pre>
+</div>
+<div id="ssl-certificate-verify-failed-error" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="ssl-certificate-verify-failed-error" class="callout-inner">
+<h3 class="callout-title">SSL: certificate verify failed error</h3>
+<div class="callout-content">
+<p>If you get the following error message:
+<code>certificate verify failed: unable to get local issuer certificate</code>,
+you can download <a href="https://storage.googleapis.com/tensorflow/keras-applications/densenet/densenet121_weights_tf_dim_ordering_tf_kernels_notop.h5" class="external-link">the
+weights of the model manually</a> and then load in the weights from the
+downloaded file:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>base_model <span class="op">=</span> keras.applications.DenseNet121(</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>    include_top<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    pooling<span class="op">=</span><span class="st">'max'</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    weights<span class="op">=</span><span class="st">'densenet121_weights_tf_dim_ordering_tf_kernels_notop.h5'</span>, <span class="co"># this should refer to the weights file you downloaded</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    input_tensor<span class="op">=</span>upscale,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    input_shape<span class="op">=</span>(<span class="dv">160</span>,<span class="dv">160</span>,<span class="dv">3</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>)</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 <p>By setting <code>include_top</code> to <code>False</code> we exclude
 the fully connected layer at the top of the network. This layer was used
@@ -466,27 +494,27 @@ decide on which of the 10 Dollar Street dataset classes the image
 belongs.</p>
 <p>We will turn of the <code>trainable</code> property of the base
 model:</p>
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>base_model.trainable <span class="op">=</span> <span class="va">False</span></span></code></pre>
-</div>
-<p>Let’s define our ‘head’ network:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>out <span class="op">=</span> base_model.output</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>out <span class="op">=</span> keras.layers.Flatten()(out)</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>out <span class="op">=</span> keras.layers.BatchNormalization()(out)</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>out <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(out)</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>out <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.5</span>)(out)</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>out <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(out)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>base_model.trainable <span class="op">=</span> <span class="va">False</span></span></code></pre>
 </div>
-<p>Finally we define our model:</p>
+<p>Let’s define our ‘head’ network:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>model <span class="op">=</span> keras.models.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>out)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>out <span class="op">=</span> base_model.output</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>out <span class="op">=</span> keras.layers.Flatten()(out)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>out <span class="op">=</span> keras.layers.BatchNormalization()(out)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>out <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(out)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>out <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.5</span>)(out)</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>out <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(out)</span></code></pre>
+</div>
+<p>Finally we define our model:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>model <span class="op">=</span> keras.models.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>out)</span></code></pre>
 </div>
 <div id="inspect-the-densenet121-network" class="callout challenge">
 <div class="callout-square">
@@ -589,54 +617,54 @@ to DenseNet121?</p>
 <div class="accordion-body">
 <div class="section level3">
 <h3 id="compile-the-model-1">1. Compile the model<a class="anchor" aria-label="anchor" href="#compile-the-model-1"></a></h3>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>              loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>              loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
 </div>
 </div>
 <div class="section level3">
 <h3 id="train-the-model-1">2. Train the model<a class="anchor" aria-label="anchor" href="#train-the-model-1"></a></h3>
 <p>Define the early stopper:</p>
-<div class="codewrapper sourceCode" id="cb10">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>early_stopper <span class="op">=</span> keras.callbacks.EarlyStopping(monitor<span class="op">=</span><span class="st">'val_accuracy'</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                              patience<span class="op">=</span><span class="dv">5</span>)</span></code></pre>
-</div>
-<p>Train the model:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>history <span class="op">=</span> model.fit(x<span class="op">=</span>train_images,</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>                    y<span class="op">=</span>train_labels,</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>                    batch_size<span class="op">=</span><span class="dv">32</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>                    epochs<span class="op">=</span><span class="dv">30</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>                    callbacks<span class="op">=</span>[early_stopper],</span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>early_stopper <span class="op">=</span> keras.callbacks.EarlyStopping(monitor<span class="op">=</span><span class="st">'val_accuracy'</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>                              patience<span class="op">=</span><span class="dv">5</span>)</span></code></pre>
+</div>
+<p>Train the model:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>history <span class="op">=</span> model.fit(x<span class="op">=</span>train_images,</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>                    y<span class="op">=</span>train_labels,</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                    batch_size<span class="op">=</span><span class="dv">32</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>                    epochs<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>                    callbacks<span class="op">=</span>[early_stopper],</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
 </div>
 </div>
 <div class="section level3">
 <h3 id="inspect-the-results-1">3. Inspect the results<a class="anchor" aria-label="anchor" href="#inspect-the-results-1"></a></h3>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="kw">def</span> plot_history(history, metrics):</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">    Plot the training history</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">    Args:</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">        history (keras History object that is returned by model.fit())</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">        metrics(str, list): Metric or a list of metrics to plot</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>    history_df <span class="op">=</span> pd.DataFrame.from_dict(history.history)</span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>    sns.lineplot(data<span class="op">=</span>history_df[metrics])</span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>    plt.xlabel(<span class="st">"epochs"</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>    plt.ylabel(<span class="st">"metric"</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>plot_history(history, [<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="kw">def</span> plot_history(history, metrics):</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co">    Plot the training history</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co">        history (keras History object that is returned by model.fit())</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co">        metrics(str, list): Metric or a list of metrics to plot</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>    history_df <span class="op">=</span> pd.DataFrame.from_dict(history.history)</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>    sns.lineplot(data<span class="op">=</span>history_df[metrics])</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>    plt.xlabel(<span class="st">"epochs"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>    plt.ylabel(<span class="st">"metric"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>plot_history(history, [<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>])</span></code></pre>
 </div>
 <p><img src="../fig/05_training_history_transfer_learning.png" alt="Training history for training the pre-trained-model. The training accuracy slowly raises from 0.2 to 0.9 in 20 epochs. The validation accuracy starts higher at 0.25, but reaches a plateau around 0.64" class="figure">
 The final validation accuracy reaches 64%, this is a huge improvement
@@ -731,8 +759,8 @@ any links that you are not going to use.
   "url": "https://carpentries-incubator.github.io/deep-learning-intro/instructor/5-transfer-learning.html",
   "identifier": "https://carpentries-incubator.github.io/deep-learning-intro/instructor/5-transfer-learning.html",
   "dateCreated": "2020-10-17",
-  "dateModified": "2024-12-03",
-  "datePublished": "2024-12-03"
+  "dateModified": "2025-01-13",
+  "datePublished": "2025-01-13"
 }
 
   </script><script>
