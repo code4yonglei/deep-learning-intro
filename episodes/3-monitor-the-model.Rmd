@@ -538,6 +538,7 @@ randomly predicting a number, so the problem is not impossible to solve with mac
 
 As we saw when comparing the predictions for the training and the test set, deep learning models are prone to overfitting. Instead of iterating through countless cycles of model trainings and subsequent evaluations with a reserved test set, it is common practice to work with a second split off dataset to monitor the model during training.
 This is the *validation set* which can be regarded as a second test set. As with the test set, the datapoints of the *validation set* are not used for the actual model training itself. Instead, we evaluate the model with the *validation set* after every epoch during training, for instance to stop if we see signs of clear overfitting.
+
 Since we are adapting our model (tuning our hyperparameters) based on this validation set, it is *very* important that it is kept separate from the test set. If we used the same set, we would not know whether our model truly generalizes or is only overfitting.
 
 ::: callout
@@ -687,7 +688,7 @@ compile_model(model)
 
 To apply early stopping during training it is easiest to use Keras `EarlyStopping` class.
 This allows to define the condition of when to stop training. In our case we will say when the validation loss is lowest.
-However, since we have seen quiet some fluctuation of the losses during training above we will also set `patience=10` which means that the model will stop training if the validation loss has not gone down for 10 epochs.
+However, since we have seen some fluctuation of the losses during training above we will also set `patience=10` which means that the model will stop training if the validation loss has not gone down for 10 epochs.
 ```python
 from tensorflow.keras.callbacks import EarlyStopping
 
@@ -711,11 +712,10 @@ plot_history(history, ['root_mean_squared_error', 'val_root_mean_squared_error']
 ![](fig/03_training_history_3_rmse_early_stopping.png){alt='Plot of RMSE vs epochs for the training set and the validation set displaying similar performance across the two sets.'}
 
 This still seems to reveal the onset of overfitting, but the training stops before the discrepancy between training and validation loss can grow further.
-Despite avoiding severe cases of overfitting, early stopping has the additional advantage that the number of training epochs will be regulated automatically.
-Instead of comparing training runs for different number of epochs, early stopping allows to simply set the number of epochs to a desired maximum value.
+In addition to avoiding severe cases of overfitting, early stopping has the advantage that the number of training epochs will be regulated automatically.
 
 What might be a bit unintuitive is that the training runs might now end very rapidly.
-This might spark the question: have we really reached an optimum yet?
+This raises the question: have we really reached an optimum yet?
 And often the answer to this is "no", which is why early stopping frequently is combined with other approaches to avoid overfitting.
 Overfitting means that a model (seemingly) performs better on seen data compared to unseen data. One then often also says that it does not "generalize" well.
 Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques** and we will come back to this in **episode 4**.
