@@ -61,6 +61,12 @@ If you have not downloaded the data yet, you can also load it directly from Zeno
 ```python
 data = pd.read_csv("https://zenodo.org/record/5071376/files/weather_prediction_dataset_light.csv?download=1")
 ```
+
+#### SSL certificate error
+<!-- Using H4 here because H3 renders to big compared to the title of the callout -->
+If you get the following error message: `certificate verify failed: unable to get local issuer certificate`,
+you can download [the data from here manually](https://zenodo.org/record/5071376/files/weather_prediction_dataset_light.csv?download=1)
+into a local folder and load the data using the code below.
 :::
 
 ```python
@@ -504,8 +510,8 @@ plot_predictions(y_baseline_prediction, y_test, title='Baseline predictions on t
 It is difficult to interpret from this plot whether our model is doing better than the baseline.
 We can also have a look at the RMSE:
 ```python
-from sklearn.metrics import mean_squared_error
-rmse_baseline = mean_squared_error(y_test, y_baseline_prediction, squared=False)
+from sklearn.metrics import root_mean_squared_error
+rmse_baseline = root_mean_squared_error(y_test, y_baseline_prediction)
 print('Baseline:', rmse_baseline)
 print('Neural network: ', test_metrics['root_mean_squared_error'])
 ```
@@ -957,7 +963,7 @@ Which will show an interface that looks something like this:
 Now that we have a somewhat acceptable model, let us not forget to save it for future users to benefit from our explorative efforts!
 
 ```python
-model.save('my_tuned_weather_model')
+model.save('my_tuned_weather_model.keras')
 ```
 
 ## Outlook

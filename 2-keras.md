@@ -269,6 +269,7 @@ To split the cleaned dataset into a training and test set we will use a very con
 function from sklearn called `train_test_split`.
 
 This function takes a number of parameters which are extensively explained in [the scikit-learn documentation](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) :
+
 - The first two parameters are the dataset (in our case `features`) and the corresponding targets (i.e. defined as target).
 - Next is the named parameter `test_size` this is the fraction of the dataset that is
 used for testing, in this case `0.2` means 20% of the data will be used for testing.
@@ -282,6 +283,14 @@ from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=0, shuffle=True, stratify=target)
 ```
+
+::: callout
+## Importance of using the same train-test split
+By setting `random_state=0` we ensure that everyone has the same train-test split.
+When doing machine learning and deep learning it is crucial that you use the same train and test dataset for different experiments.
+Comparing evaluation metrics between experiments run on different data splits is meaningless,
+because the accuracy of a model depends on the data used to train and test it.
+:::
 
 ::: instructor
 ## BREAK
@@ -312,9 +321,19 @@ seed(1)
 keras.utils.set_random_seed(2)
 ```
 
+::: callout
+## When to use random seeds?
+We use a random seed here to ensure that we get the same results every time we run this code.
+This makes our results reproducible and allows us to better compare results between different experiments.
+
+Please note that even though you have selected a random seed, this seed is used to generate a
+**different** random number every time you execute a Jupyter cell.
+So, to get truly replicable deep learning pipelines you need to run the notebook from start to end in one go.
+:::
+
 ### Build a neural network from scratch
 
-Now we will build a neural network from scratch, which is surprisingly straightforward using Keras.
+We will now build a simple neural network from scratch using Keras.
 
 With Keras you compose a neural network by creating layers and linking them
 together. For now we will only use one type of layer called a fully connected
@@ -537,6 +556,14 @@ sns.lineplot(x=history.epoch, y=history.history['loss'])
 ```
 ![][training_curve]
 
+::: callout
+## I get a different plot
+It could be that you get a different plot than the one shown here.
+This could be because of a different random initialization of the model or a different split of the data.
+This difference can be avoided by setting `random_state` and random seed in the same way like we discussed
+in [When to use random seeds?](#when-to-use-random-seeds).
+:::
+
 This plot can be used to identify whether the training is well configured or whether there
 are problems that need to be addressed.
 
@@ -740,12 +767,12 @@ This can be done by using the `save` method of the model.
 It takes a string as a parameter which is the path of a directory where the model is stored.
 
 ```python
-model.save('my_first_model')
+model.save('my_first_model.keras')
 ```
 
 This saved model can be loaded again by using the `load_model` method as follows:
 ```python
-pretrained_model = keras.models.load_model('my_first_model')
+pretrained_model = keras.models.load_model('my_first_model.keras')
 ```
 
 This loaded model can be used as before to predict.
