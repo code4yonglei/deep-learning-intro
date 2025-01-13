@@ -187,12 +187,12 @@ Hint: A layer with `relu` activation, with `sigmoid` activation or no activation
 
 In our example we want to predict the sunshine hours in Basel (or any other place in the dataset) for tomorrow based on the weather data of all 18 locations today. `BASEL_sunshine` is a floating point value (i.e. `float64`). The network should hence output a single float value which is why the last layer of our network will only consist of a single node.
 
-We compose a network of two hidden layers to start off with something. We go by a scheme with 100 neurons in the first hidden layer and 50 neurons in the second layer. As activation function we settle on the `relu` function as a it proved very robust and widely used. To make our live easier later, we wrap the definition of the network in a method called `create_nn`.
+We compose a network of two hidden layers to start off with something. We go by a scheme with 100 neurons in the first hidden layer and 50 neurons in the second layer. As activation function we settle on the `relu` function as a it is very robust and widely used. To make our live easier later, we wrap the definition of the network in a function called `create_nn()`.
 
 ```python
 from tensorflow import keras
 
-def create_nn():
+def create_nn(X_data):
     # Input layer
     inputs = keras.Input(shape=(X_data.shape[1],), name='input')
 
@@ -205,7 +205,7 @@ def create_nn():
 
     return keras.Model(inputs=inputs, outputs=outputs, name="weather_prediction_model")
 
-model = create_nn()
+model = create_nn(X_data)
 ```
 
 The shape of the input layer has to correspond to the number of features in our data: `89`. We use `X_data.shape[1]` to obtain this value dynamically
@@ -553,7 +553,7 @@ Let's give this a try!
 
 We need to initiate a new model -- otherwise Keras will simply assume that we want to continue training the model we already trained above.
 ```python
-model = create_nn()
+model = create_nn(X_data)
 compile_model(model)
 ```
 
@@ -610,11 +610,11 @@ If time is short: Suggestion is to run one network with only 10 and 5 nodes in t
 :::: solution
 ## Solution
 
-Let's first adapt our `create_nn` function so that we can tweak the number of nodes in the 2 layers
+Let's first adapt our `create_nn()` function so that we can tweak the number of nodes in the 2 layers
 by passing arguments to the function:
 
 ```python
-def create_nn(nodes1=100, nodes2=50):
+def create_nn(X_data, nodes1=100, nodes2=50):
    # Input layer
    inputs = keras.layers.Input(shape=(X_data.shape[1],), name='input')
    # Dense layers
@@ -629,7 +629,7 @@ Let's see if it works by creating a much smaller network with 10 nodes in the fi
 and 5 nodes in the second layer:
 
 ```python
-model = create_nn(10, 5)
+model = create_nn(X_data, 10, 5)
 model.summary()
 ```
 ```
@@ -682,7 +682,7 @@ Early stopping is both intuitive and effective to use, so it has become a standa
 
 To better study the effect, we can now safely go back to models with many (too many?) parameters:
 ```python
-model = create_nn()
+model = create_nn(X_data)
 compile_model(model)
 ```
 
@@ -733,7 +733,7 @@ It does not require any additional parameter setting.
 The `BatchNormalization` can be inserted as yet another layer into the architecture.
 
 ```python
-def create_nn():
+def create_nn(X_data):
     # Input layer
     inputs = keras.layers.Input(shape=(X_data.shape[1],), name='input')
 
@@ -748,7 +748,7 @@ def create_nn():
     # Defining the model and compiling it
     return keras.Model(inputs=inputs, outputs=outputs, name="model_batchnorm")
 
-model = create_nn()
+model = create_nn(X_data)
 compile_model(model)
 model.summary()
 ```
@@ -865,11 +865,11 @@ X_train, X_holdout, y_train, y_holdout = train_test_split(X_data, y_data, test_s
 X_val, X_test, y_val, y_test = train_test_split(X_holdout, y_holdout, test_size=0.5, random_state=0)
 ```
 
-Create the network. We can re-use the `create_nn` that we already have. Because we have reduced the number of input features
+Create the network. We can re-use the `create_nn()` function that we already have. Because we have reduced the number of input features
 the number of parameters in the network goes down from 14457 to 6137.
 ```python
 # create the network and view its summary
-model = create_nn()
+model = create_nn(X_data)
 compile_model(model)
 model.summary()
 ```
