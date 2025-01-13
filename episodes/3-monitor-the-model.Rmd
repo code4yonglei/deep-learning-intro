@@ -364,8 +364,7 @@ With this, we complete the compilation of our network and are ready to start tra
 ## 6. Train the model
 
 Now that we created and compiled our dense neural network, we can start training it.
-One additional concept we need to introduce though, is the `batch_size`.
-This defines how many samples from the training data will be used to estimate the error gradient before the model weights are updated.
+We add the `batch_size` parameter that defines -- as discussed above -- how many samples from the training data will be used to estimate the error gradient before the model weights are updated.
 Larger batches will produce better, more accurate gradient estimates but also less frequent updates of the weights.
 Here we are going to use a batch size of 32 which is a common starting point.
 ```python
