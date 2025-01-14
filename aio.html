@@ -1646,7 +1646,7 @@ of features distinguishes the two sexes best?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>The plots show that the green class, Gentoo is somewhat more easily
@@ -1778,7 +1778,7 @@ encoded the target class?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>C: 3, one for each output variable class</p>
 </div>
@@ -2039,7 +2039,7 @@ network</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Have a look at the output of <code>model.summary()</code>:</p>
 <div class="codewrapper sourceCode" id="cb18">
@@ -2251,7 +2251,7 @@ the range on the y-axis with the previous training curve. <img src="fig/02_bad_t
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>The training loss decreases quickly. It drops in a smooth line with
@@ -2479,7 +2479,7 @@ visualize a confusion matrix.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The confusion matrix shows that the predictions for Adelie and Gentoo
 are decent, but could be improved. However, Chinstrap is not predicted
@@ -2810,6 +2810,13 @@ humidity, etcetera)</p>
 </div>
 <p>This will give both the number of samples (3654) and the number of
 features (89 + month + date).</p>
+<p>For any row <code>i</code>, we will use the values of all fields
+except <code>MONTH</code> and <code>DATE</code> as the input features
+<code>X</code>. We want to use them to forecast the number of sunshine
+hours of the next day, hence we use the value of the field
+<code>BASEL_sunshine</code> in the <em>subsequent</em> row
+(<code>i+1</code>) as the label that we want to predict
+(<code>y</code>).</p>
 </div>
 </section><section><h2 class="section-heading" id="prepare-data">3. Prepare data<a class="anchor" aria-label="anchor" href="#prepare-data"></a>
 </h2>
@@ -2952,17 +2959,17 @@ consist of a single node.</p>
 <p>We compose a network of two hidden layers to start off with
 something. We go by a scheme with 100 neurons in the first hidden layer
 and 50 neurons in the second layer. As activation function we settle on
-the <code>relu</code> function as a it proved very robust and widely
-used. To make our live easier later, we wrap the definition of the
-network in a method called <code>create_nn</code>.</p>
+the <code>relu</code> function as a it is very robust and widely used.
+To make our live easier later, we wrap the definition of the network in
+a function called <code>create_nn()</code>.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="kw">def</span> create_nn():</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="kw">def</span> create_nn(input_shape):</span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    <span class="co"># Input layer</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>(X_data.shape[<span class="dv">1</span>],), name<span class="op">=</span><span class="st">'input'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>input_shape, name<span class="op">=</span><span class="st">'input'</span>)</span>
 <span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    <span class="co"># Dense layers</span></span>
 <span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    layers_dense <span class="op">=</span> keras.layers.Dense(<span class="dv">100</span>, <span class="st">'relu'</span>)(inputs)</span>
@@ -2973,7 +2980,7 @@ network in a method called <code>create_nn</code>.</p>
 <span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a></span>
 <span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>    <span class="cf">return</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"weather_prediction_model"</span>)</span>
 <span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>model <span class="op">=</span> create_nn()</span></code></pre>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>model <span class="op">=</span> create_nn(input_shape<span class="op">=</span>(X_data.shape[<span class="dv">1</span>],))</span></code></pre>
 </div>
 <p>The shape of the input layer has to correspond to the number of
 features in our data: <code>89</code>. We use
@@ -3226,13 +3233,12 @@ to start training.</p>
 </h2>
 <hr class="half-width">
 <p>Now that we created and compiled our dense neural network, we can
-start training it. One additional concept we need to introduce though,
-is the <code>batch_size</code>. This defines how many samples from the
-training data will be used to estimate the error gradient before the
-model weights are updated. Larger batches will produce better, more
-accurate gradient estimates but also less frequent updates of the
-weights. Here we are going to use a batch size of 32 which is a common
-starting point.</p>
+start training it. We add the <code>batch_size</code> parameter that
+defines – as discussed above – how many samples from the training data
+will be used to estimate the error gradient before the model weights are
+updated. Larger batches will produce better, more accurate gradient
+estimates but also less frequent updates of the weights. Here we are
+going to use a batch size of 32 which is a common starting point.</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3500,8 +3506,8 @@ the <em>validation set</em> which can be regarded as a second test set.
 As with the test set, the datapoints of the <em>validation set</em> are
 not used for the actual model training itself. Instead, we evaluate the
 model with the <em>validation set</em> after every epoch during
-training, for instance to stop if we see signs of clear overfitting.
-Since we are adapting our model (tuning our hyperparameters) based on
+training, for instance to stop if we see signs of clear overfitting.</p>
+<p>Since we are adapting our model (tuning our hyperparameters) based on
 this validation set, it is <em>very</em> important that it is kept
 separate from the test set. If we used the same set, we would not know
 whether our model truly generalizes or is only overfitting.</p>
@@ -3527,7 +3533,7 @@ above.</p>
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>model <span class="op">=</span> create_nn()</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>model <span class="op">=</span> create_nn(input_shape<span class="op">=</span>(X_data.shape[<span class="dv">1</span>],))</span>
 <span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>compile_model(model)</span></code></pre>
 </div>
 <p>But now we train it with the small addition of also passing it our
@@ -3621,15 +3627,15 @@ notable effect on the performance on the validation set?</li>
 </button>
 <div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
-<p>Let’s first adapt our <code>create_nn</code> function so that we can
-tweak the number of nodes in the 2 layers by passing arguments to the
-function:</p>
+<p>Let’s first adapt our <code>create_nn()</code> function so that we
+can tweak the number of nodes in the 2 layers by passing arguments to
+the function:</p>
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="kw">def</span> create_nn(nodes1<span class="op">=</span><span class="dv">100</span>, nodes2<span class="op">=</span><span class="dv">50</span>):</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="kw">def</span> create_nn(input_shape, nodes1<span class="op">=</span><span class="dv">100</span>, nodes2<span class="op">=</span><span class="dv">50</span>):</span>
 <span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>   <span class="co"># Input layer</span></span>
-<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>   inputs <span class="op">=</span> keras.layers.Input(shape<span class="op">=</span>(X_data.shape[<span class="dv">1</span>],), name<span class="op">=</span><span class="st">'input'</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>   inputs <span class="op">=</span> keras.layers.Input(shape<span class="op">=</span>input_shape, name<span class="op">=</span><span class="st">'input'</span>)</span>
 <span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>   <span class="co"># Dense layers</span></span>
 <span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>   layers_dense <span class="op">=</span> keras.layers.Dense(nodes1, <span class="st">'relu'</span>)(inputs)</span>
 <span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>   layers_dense <span class="op">=</span> keras.layers.Dense(nodes2, <span class="st">'relu'</span>)(layers_dense)</span>
@@ -3642,7 +3648,7 @@ nodes in the first layer, and 5 nodes in the second layer:</p>
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>model <span class="op">=</span> create_nn(<span class="dv">10</span>, <span class="dv">5</span>)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>model <span class="op">=</span> create_nn(input_shape<span class="op">=</span>(X_data.shape[<span class="dv">1</span>],), nodes1<span class="op">=</span><span class="dv">10</span>, nodes2<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>model.summary()</span></code></pre>
 </div>
 <pre><code>Model: "model_small"
@@ -3714,16 +3720,16 @@ many (too many?) parameters:</p>
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>model <span class="op">=</span> create_nn()</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>model <span class="op">=</span> create_nn(input_shape<span class="op">=</span>(X_data.shape[<span class="dv">1</span>],))</span>
 <span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>compile_model(model)</span></code></pre>
 </div>
 <p>To apply early stopping during training it is easiest to use Keras
 <code>EarlyStopping</code> class. This allows to define the condition of
 when to stop training. In our case we will say when the validation loss
-is lowest. However, since we have seen quiet some fluctuation of the
-losses during training above we will also set <code>patience=10</code>
-which means that the model will stop training if the validation loss has
-not gone down for 10 epochs.</p>
+is lowest. However, since we have seen some fluctuation of the losses
+during training above we will also set <code>patience=10</code> which
+means that the model will stop training if the validation loss has not
+gone down for 10 epochs.</p>
 <div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3748,14 +3754,12 @@ not gone down for 10 epochs.</p>
 </div>
 <figure><img src="fig/03_training_history_3_rmse_early_stopping.png" alt="Plot of RMSE vs epochs for the training set and the validation set displaying similar performance across the two sets." class="figure mx-auto d-block"></figure><p>This still seems to reveal the onset of overfitting, but the training
 stops before the discrepancy between training and validation loss can
-grow further. Despite avoiding severe cases of overfitting, early
-stopping has the additional advantage that the number of training epochs
-will be regulated automatically. Instead of comparing training runs for
-different number of epochs, early stopping allows to simply set the
-number of epochs to a desired maximum value.</p>
+grow further. In addition to avoiding severe cases of overfitting, early
+stopping has the advantage that the number of training epochs will be
+regulated automatically.</p>
 <p>What might be a bit unintuitive is that the training runs might now
-end very rapidly. This might spark the question: have we really reached
-an optimum yet? And often the answer to this is “no”, which is why early
+end very rapidly. This raises the question: have we really reached an
+optimum yet? And often the answer to this is “no”, which is why early
 stopping frequently is combined with other approaches to avoid
 overfitting. Overfitting means that a model (seemingly) performs better
 on seen data compared to unseen data. One then often also says that it
@@ -3781,9 +3785,9 @@ layer into the architecture.</p>
 <div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="kw">def</span> create_nn():</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="kw">def</span> create_nn(input_shape):</span>
 <span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>    <span class="co"># Input layer</span></span>
-<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>    inputs <span class="op">=</span> keras.layers.Input(shape<span class="op">=</span>(X_data.shape[<span class="dv">1</span>],), name<span class="op">=</span><span class="st">'input'</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>    inputs <span class="op">=</span> keras.layers.Input(shape<span class="op">=</span>input_shape, name<span class="op">=</span><span class="st">'input'</span>)</span>
 <span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a></span>
 <span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>    <span class="co"># Dense layers</span></span>
 <span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a>    layers_dense <span class="op">=</span> keras.layers.BatchNormalization()(inputs) <span class="co"># This is new!</span></span>
@@ -3796,7 +3800,7 @@ layer into the architecture.</p>
 <span id="cb37-13"><a href="#cb37-13" tabindex="-1"></a>    <span class="co"># Defining the model and compiling it</span></span>
 <span id="cb37-14"><a href="#cb37-14" tabindex="-1"></a>    <span class="cf">return</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"model_batchnorm"</span>)</span>
 <span id="cb37-15"><a href="#cb37-15" tabindex="-1"></a></span>
-<span id="cb37-16"><a href="#cb37-16" tabindex="-1"></a>model <span class="op">=</span> create_nn()</span>
+<span id="cb37-16"><a href="#cb37-16" tabindex="-1"></a>model <span class="op">=</span> create_nn(input_shape<span class="op">=</span>(X_data.shape[<span class="dv">1</span>],))</span>
 <span id="cb37-17"><a href="#cb37-17" tabindex="-1"></a>compile_model(model)</span>
 <span id="cb37-18"><a href="#cb37-18" tabindex="-1"></a>model.summary()</span></code></pre>
 </div>
@@ -3952,14 +3956,15 @@ all features from all cities. How does it perform?</li>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>X_train, X_holdout, y_train, y_holdout <span class="op">=</span> train_test_split(X_data, y_data, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>X_val, X_test, y_val, y_test <span class="op">=</span> train_test_split(X_holdout, y_holdout, test_size<span class="op">=</span><span class="fl">0.5</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span></code></pre>
 </div>
-<p>Create the network. We can re-use the <code>create_nn</code> that we
-already have. Because we have reduced the number of input features the
-number of parameters in the network goes down from 14457 to 6137.</p>
+<p>Create the network. We can re-use the <code>create_nn()</code>
+function that we already have. Because we have reduced the number of
+input features the number of parameters in the network goes down from
+14457 to 6137.</p>
 <div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co"># create the network and view its summary</span></span>
-<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>model <span class="op">=</span> create_nn()</span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>model <span class="op">=</span> create_nn(input_shape<span class="op">=</span>(X_data.shape[<span class="dv">1</span>],))</span>
 <span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a>compile_model(model)</span>
 <span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>model.summary()</span></code></pre>
 </div>
@@ -4377,7 +4382,7 @@ have?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The correct solution is C: 12288</p>
 <p>There are 4096 pixels in one image (64 * 64), each pixel has 3
@@ -4475,7 +4480,7 @@ this layer have?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The correct answer is B: Each entry of the input dimensions, i.e. the
 <code>shape</code> of one single data point, is connected with 100
@@ -4604,7 +4609,7 @@ convolution?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -4641,7 +4646,7 @@ Parameters”</a>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 2000 less than the fully
@@ -4718,7 +4723,7 @@ could work on our dataset here: <a href="https://paperswithcode.com/sota/image-c
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <ul>
 <li>The Flatten layer converts the 60x60x50 output of the convolutional
@@ -5007,7 +5012,7 @@ needs to be adjusted as follows:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>We add an extra Conv2D layer after the second pooling layer:</p>
 <div class="codewrapper sourceCode" id="cb28">
@@ -5130,7 +5135,7 @@ would benefit from a CNN architecture?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>No that would not make sense. Convolutions only work when the
@@ -5293,7 +5298,7 @@ model performance, what is the term associated to this procedure?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <div class="section level3">
 <h3 id="varying-the-dropout-rate">1. Varying the dropout rate<a class="anchor" aria-label="anchor" href="#varying-the-dropout-rate"></a>
@@ -5517,7 +5522,7 @@ hyperparameters from a predefined set of possible values.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <p>1:</p>
 <ul>
@@ -5911,7 +5916,7 @@ as argument for <code>DenseNet121()</code>?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Solutions </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="section level3">
 <h3 id="trainable-parameters-1">1. Trainable parameters<a class="anchor" aria-label="anchor" href="#trainable-parameters-1"></a>
@@ -5980,7 +5985,7 @@ to DenseNet121?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="section level3">
 <h3 id="compile-the-model-1">1. Compile the model<a class="anchor" aria-label="anchor" href="#compile-the-model-1"></a>
