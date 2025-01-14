@@ -677,10 +677,12 @@ We have created a test set (i.e. y_test) during the data preparation stage which
 now to create a confusion matrix.
 
 ### Confusion matrix
-With the predicted species we can now create a confusion matrix and display it
-using seaborn.
-To create a confusion matrix we will use another convenient function from sklearn
-called `confusion_matrix`.
+With the predicted species we can now create a confusion matrix and display it using seaborn.
+
+A Confusion matrix is an `N x N` matrix used for evaluating the performance of a classification model, where `N` is the number of target classes.
+The matrix compares the actual target values with those predicted from the classification model, which gives a holistic view of how well the classification model is performing.
+
+To create a confusion matrix we will use another convenient function from sklearn called `confusion_matrix`.
 This function takes as a first parameter the true labels of the test set.
 We can get these by using the `idxmax` method on the y_test dataframe.
 The second parameter is the predicted labels which we did above.
@@ -699,10 +701,8 @@ print(matrix)
  [ 6  0 19]]
 ```
 
-Unfortunately, this matrix is not immediately understandable. Its not clear which column and which row
-corresponds to which species.
-So let's convert it to a pandas dataframe with its index and columns set to the species
-as follows:
+Unfortunately, this matrix is not immediately understandable. Its not clear which column and which row corresponds to which species.
+So let's convert it to a pandas dataframe with its index and columns set to the species as follows:
 
 ```python
 # Convert to a pandas dataframe
@@ -724,6 +724,11 @@ sns.heatmap(confusion_df, annot=True)
 ```
 ![][confusion_matrix]
 
+Here are more explanations of this confusion matrix and the classification model.
+- The first row: There are 30 Adelie tested, with 22 Adelie identified as Adelie (valid), 8 Adelie identified as Gentoo  (invalid), and no Adelie identified as Chinstrap.
+- The second row: There are 14 Chinstrap tested, with 5 Chinstrap identified as Adelie (invalid), no Chinstrap recognized as Chinstrap (valid), and 9 Chinstrap identified as Gentoo (invalid).
+- The third row: There are 25 Gentoo tested, with 6 Gentoo identified as Adelie (invalid), 0 Gentoo recognized as Chinstrap (invalid), and 19 Gentoo identified as Gentoo (valid).
+
 ::: challenge
 ## Confusion Matrix
 Measure the performance of the neural network you trained and
@@ -735,17 +740,16 @@ visualize a confusion matrix.
 
 :::: solution
 ## Solution
-The confusion matrix shows that the predictions for Adelie and Gentoo
-are decent, but could be improved. However, Chinstrap is not predicted
-ever.
-The training loss was very low, so from that perspective this may be
-surprising.
-But this illustrates very well why a test set is important when training
-neural networks.
-We can try many things to improve the performance from here.
-One of the first things we can try is to balance the dataset better.
-Other options include: changing the network architecture or changing the
-training parameters
+The confusion matrix shows that the predictions for Adelie and Gentoo are decent, but could be improved. However, Chinstrap is not predicted ever.
+Why the chinstraps are not present in the the predictions in the confusion matrix?
+If we go back to the [**Pair Plot**](https://carpentries-incubator.github.io/deep-learning-intro/2-keras.html#pair-plot) in the Visualization section, we can figure it out that the biggest challenge is masking the Chinstrap penguins from the marginal distributions of the four features (bill length, bill depth, flipper length, and body mass). That is, There is no single variable that separates Chinstrap from all other species. The combination of bill_length_mm vs. bill_depth_mm (the 2nd subfigure in the first row in the pairplot) gives a good separation of Chinstrap from Adelie and Gentoo.
+However, as there are limited number combinations that can be used for a clear classification of Penguins species, the constructed neural network (one dense layer and 10 neurons in this layer) might be difficult to generate a clear classification of Penguins species.
+A practical workaround is to increase the number of dense layers and also the number of neutrons in each dense layers. In addition, adjusting the learning rate is also possible to achive a high score for the prediction. You will get more info in the [**Advanced layer types**](https://carpentries-incubator.github.io/deep-learning-intro/4-advanced-layer-types.html) episode.
+
+The training loss was very low, so from that perspective this may be surprising. But this illustrates very well why a test set is important when training neural networks.
+
+We can try many things to improve the performance from here. One of the first things we can try is to balance the dataset better.
+Other options include: changing the network architecture or changing the training parameters
 
 Note that the outcome you have might be slightly different from what is shown in this tutorial.
 ::::
