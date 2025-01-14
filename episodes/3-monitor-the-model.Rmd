@@ -115,6 +115,10 @@ data.shape
 This will give both the number of samples (3654) and the number of features (89 + month +
 date).
 
+For any row `i`, we will use the values of all fields except `MONTH` and `DATE` as the input features `X`.
+We want to use them to forecast the number of sunshine hours of the next day,
+hence we use the value of the field `BASEL_sunshine` in the *subsequent* row (`i+1`) as the label that we want to predict (`y`).
+
 ## 3. Prepare data
 
 ### Select a subset and split into data (X) and labels (y)
@@ -189,14 +193,14 @@ Hint: A layer with `relu` activation, with `sigmoid` activation or no activation
 
 In our example we want to predict the sunshine hours in Basel (or any other place in the dataset) for tomorrow based on the weather data of all 18 locations today. `BASEL_sunshine` is a floating point value (i.e. `float64`). The network should hence output a single float value which is why the last layer of our network will only consist of a single node.
 
-We compose a network of two hidden layers to start off with something. We go by a scheme with 100 neurons in the first hidden layer and 50 neurons in the second layer. As activation function we settle on the `relu` function as a it proved very robust and widely used. To make our live easier later, we wrap the definition of the network in a method called `create_nn`.
+We compose a network of two hidden layers to start off with something. We go by a scheme with 100 neurons in the first hidden layer and 50 neurons in the second layer. As activation function we settle on the `relu` function as a it is very robust and widely used. To make our live easier later, we wrap the definition of the network in a function called `create_nn()`.
 
 ```python
 from tensorflow import keras
 
-def create_nn():
+def create_nn(input_shape):
     # Input layer
-    inputs = keras.Input(shape=(X_data.shape[1],), name='input')
+    inputs = keras.Input(shape=input_shape, name='input')
 
     # Dense layers
     layers_dense = keras.layers.Dense(100, 'relu')(inputs)
@@ -207,7 +211,7 @@ def create_nn():
 
     return keras.Model(inputs=inputs, outputs=outputs, name="weather_prediction_model")
 
-model = create_nn()
+model = create_nn(input_shape=(X_data.shape[1],))
 ```
 
 The shape of the input layer has to correspond to the number of features in our data: `89`. We use `X_data.shape[1]` to obtain this value dynamically
@@ -366,8 +370,7 @@ With this, we complete the compilation of our network and are ready to start tra
 ## 6. Train the model
 
 Now that we created and compiled our dense neural network, we can start training it.
-One additional concept we need to introduce though, is the `batch_size`.
-This defines how many samples from the training data will be used to estimate the error gradient before the model weights are updated.
+We add the `batch_size` parameter that defines -- as discussed above -- how many samples from the training data will be used to estimate the error gradient before the model weights are updated.
 Larger batches will produce better, more accurate gradient estimates but also less frequent updates of the weights.
 Here we are going to use a batch size of 32 which is a common starting point.
 ```python
@@ -541,6 +544,7 @@ randomly predicting a number, so the problem is not impossible to solve with mac
 
 As we saw when comparing the predictions for the training and the test set, deep learning models are prone to overfitting. Instead of iterating through countless cycles of model trainings and subsequent evaluations with a reserved test set, it is common practice to work with a second split off dataset to monitor the model during training.
 This is the *validation set* which can be regarded as a second test set. As with the test set, the datapoints of the *validation set* are not used for the actual model training itself. Instead, we evaluate the model with the *validation set* after every epoch during training, for instance to stop if we see signs of clear overfitting.
+
 Since we are adapting our model (tuning our hyperparameters) based on this validation set, it is *very* important that it is kept separate from the test set. If we used the same set, we would not know whether our model truly generalizes or is only overfitting.
 
 ::: callout
@@ -555,7 +559,7 @@ Let's give this a try!
 
 We need to initiate a new model -- otherwise Keras will simply assume that we want to continue training the model we already trained above.
 ```python
-model = create_nn()
+model = create_nn(input_shape=(X_data.shape[1],))
 compile_model(model)
 ```
 
@@ -612,13 +616,13 @@ If time is short: Suggestion is to run one network with only 10 and 5 nodes in t
 :::: solution
 ## Solution
 
-Let's first adapt our `create_nn` function so that we can tweak the number of nodes in the 2 layers
+Let's first adapt our `create_nn()` function so that we can tweak the number of nodes in the 2 layers
 by passing arguments to the function:
 
 ```python
-def create_nn(nodes1=100, nodes2=50):
+def create_nn(input_shape, nodes1=100, nodes2=50):
    # Input layer
-   inputs = keras.layers.Input(shape=(X_data.shape[1],), name='input')
+   inputs = keras.layers.Input(shape=input_shape, name='input')
    # Dense layers
    layers_dense = keras.layers.Dense(nodes1, 'relu')(inputs)
    layers_dense = keras.layers.Dense(nodes2, 'relu')(layers_dense)
@@ -631,7 +635,7 @@ Let's see if it works by creating a much smaller network with 10 nodes in the fi
 and 5 nodes in the second layer:
 
 ```python
-model = create_nn(10, 5)
+model = create_nn(input_shape=(X_data.shape[1],), nodes1=10, nodes2=5)
 model.summary()
 ```
 ```
@@ -684,13 +688,13 @@ Early stopping is both intuitive and effective to use, so it has become a standa
 
 To better study the effect, we can now safely go back to models with many (too many?) parameters:
 ```python
-model = create_nn()
+model = create_nn(input_shape=(X_data.shape[1],))
 compile_model(model)
 ```
 
 To apply early stopping during training it is easiest to use Keras `EarlyStopping` class.
 This allows to define the condition of when to stop training. In our case we will say when the validation loss is lowest.
-However, since we have seen quiet some fluctuation of the losses during training above we will also set `patience=10` which means that the model will stop training if the validation loss has not gone down for 10 epochs.
+However, since we have seen some fluctuation of the losses during training above we will also set `patience=10` which means that the model will stop training if the validation loss has not gone down for 10 epochs.
 ```python
 from tensorflow.keras.callbacks import EarlyStopping
 
@@ -714,11 +718,10 @@ plot_history(history, ['root_mean_squared_error', 'val_root_mean_squared_error']
 ![](fig/03_training_history_3_rmse_early_stopping.png){alt='Plot of RMSE vs epochs for the training set and the validation set displaying similar performance across the two sets.'}
 
 This still seems to reveal the onset of overfitting, but the training stops before the discrepancy between training and validation loss can grow further.
-Despite avoiding severe cases of overfitting, early stopping has the additional advantage that the number of training epochs will be regulated automatically.
-Instead of comparing training runs for different number of epochs, early stopping allows to simply set the number of epochs to a desired maximum value.
+In addition to avoiding severe cases of overfitting, early stopping has the advantage that the number of training epochs will be regulated automatically.
 
 What might be a bit unintuitive is that the training runs might now end very rapidly.
-This might spark the question: have we really reached an optimum yet?
+This raises the question: have we really reached an optimum yet?
 And often the answer to this is "no", which is why early stopping frequently is combined with other approaches to avoid overfitting.
 Overfitting means that a model (seemingly) performs better on seen data compared to unseen data. One then often also says that it does not "generalize" well.
 Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques** and we will come back to this in **episode 4**.
@@ -735,9 +738,9 @@ It does not require any additional parameter setting.
 The `BatchNormalization` can be inserted as yet another layer into the architecture.
 
 ```python
-def create_nn():
+def create_nn(input_shape):
     # Input layer
-    inputs = keras.layers.Input(shape=(X_data.shape[1],), name='input')
+    inputs = keras.layers.Input(shape=input_shape, name='input')
 
     # Dense layers
     layers_dense = keras.layers.BatchNormalization()(inputs) # This is new!
@@ -750,7 +753,7 @@ def create_nn():
     # Defining the model and compiling it
     return keras.Model(inputs=inputs, outputs=outputs, name="model_batchnorm")
 
-model = create_nn()
+model = create_nn(input_shape=(X_data.shape[1],))
 compile_model(model)
 model.summary()
 ```
@@ -867,11 +870,11 @@ X_train, X_holdout, y_train, y_holdout = train_test_split(X_data, y_data, test_s
 X_val, X_test, y_val, y_test = train_test_split(X_holdout, y_holdout, test_size=0.5, random_state=0)
 ```
 
-Create the network. We can re-use the `create_nn` that we already have. Because we have reduced the number of input features
+Create the network. We can re-use the `create_nn()` function that we already have. Because we have reduced the number of input features
 the number of parameters in the network goes down from 14457 to 6137.
 ```python
 # create the network and view its summary
-model = create_nn()
+model = create_nn(input_shape=(X_data.shape[1],))
 compile_model(model)
 model.summary()
 ```
