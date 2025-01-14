@@ -198,9 +198,9 @@ We compose a network of two hidden layers to start off with something. We go by 
 ```python
 from tensorflow import keras
 
-def create_nn(X_data):
+def create_nn(input_shape):
     # Input layer
-    inputs = keras.Input(shape=(X_data.shape[1],), name='input')
+    inputs = keras.Input(shape=input_shape, name='input')
 
     # Dense layers
     layers_dense = keras.layers.Dense(100, 'relu')(inputs)
@@ -211,7 +211,7 @@ def create_nn(X_data):
 
     return keras.Model(inputs=inputs, outputs=outputs, name="weather_prediction_model")
 
-model = create_nn(X_data)
+model = create_nn(input_shape=(X_data.shape[1],))
 ```
 
 The shape of the input layer has to correspond to the number of features in our data: `89`. We use `X_data.shape[1]` to obtain this value dynamically
@@ -559,7 +559,7 @@ Let's give this a try!
 
 We need to initiate a new model -- otherwise Keras will simply assume that we want to continue training the model we already trained above.
 ```python
-model = create_nn(X_data)
+model = create_nn(input_shape=(X_data.shape[1],))
 compile_model(model)
 ```
 
@@ -620,9 +620,9 @@ Let's first adapt our `create_nn()` function so that we can tweak the number of 
 by passing arguments to the function:
 
 ```python
-def create_nn(X_data, nodes1=100, nodes2=50):
+def create_nn(input_shape, nodes1=100, nodes2=50):
    # Input layer
-   inputs = keras.layers.Input(shape=(X_data.shape[1],), name='input')
+   inputs = keras.layers.Input(shape=input_shape, name='input')
    # Dense layers
    layers_dense = keras.layers.Dense(nodes1, 'relu')(inputs)
    layers_dense = keras.layers.Dense(nodes2, 'relu')(layers_dense)
@@ -635,7 +635,7 @@ Let's see if it works by creating a much smaller network with 10 nodes in the fi
 and 5 nodes in the second layer:
 
 ```python
-model = create_nn(X_data, 10, 5)
+model = create_nn(input_shape=(X_data.shape[1],), nodes1=10, nodes2=5)
 model.summary()
 ```
 ```
@@ -688,7 +688,7 @@ Early stopping is both intuitive and effective to use, so it has become a standa
 
 To better study the effect, we can now safely go back to models with many (too many?) parameters:
 ```python
-model = create_nn(X_data)
+model = create_nn(input_shape=(X_data.shape[1],))
 compile_model(model)
 ```
 
@@ -738,9 +738,9 @@ It does not require any additional parameter setting.
 The `BatchNormalization` can be inserted as yet another layer into the architecture.
 
 ```python
-def create_nn(X_data):
+def create_nn(input_shape):
     # Input layer
-    inputs = keras.layers.Input(shape=(X_data.shape[1],), name='input')
+    inputs = keras.layers.Input(shape=input_shape, name='input')
 
     # Dense layers
     layers_dense = keras.layers.BatchNormalization()(inputs) # This is new!
@@ -753,7 +753,7 @@ def create_nn(X_data):
     # Defining the model and compiling it
     return keras.Model(inputs=inputs, outputs=outputs, name="model_batchnorm")
 
-model = create_nn(X_data)
+model = create_nn(input_shape=(X_data.shape[1],))
 compile_model(model)
 model.summary()
 ```
@@ -874,7 +874,7 @@ Create the network. We can re-use the `create_nn()` function that we already hav
 the number of parameters in the network goes down from 14457 to 6137.
 ```python
 # create the network and view its summary
-model = create_nn(X_data)
+model = create_nn(input_shape=(X_data.shape[1],))
 compile_model(model)
 model.summary()
 ```
