@@ -90,6 +90,7 @@ such as convolutional layers.
 We use data with permissive licenses and designed for real world use cases:
 
 - The Penguin dataset (@horst_allisonhorstpalmerpenguins_2020)
+- The Weather prediction dataset (@huber_weather_2022)
 - The Dollar Street Dataset (@gaviria_rojas_dollar_2022) is representative and contains accurate demographic information to ensure their robustness and fairness, especially for smaller subpopulations.
 
 # Statement of Need
