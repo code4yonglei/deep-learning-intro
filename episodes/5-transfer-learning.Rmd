@@ -61,7 +61,7 @@ inputs = keras.Input(train_images.shape[1:])
 
 Our images are 64 x 64 pixels, whereas the pre-trained model that we will use was 
 trained on images of 160 x 160 pixels.
-To adapt our data accordingly, we add an upscale layer that that resizes the images to 160 x 160 pixels during training and prediction.
+To adapt our data accordingly, we add an upscale layer that resizes the images to 160 x 160 pixels during training and prediction.
 
 ```python
 # upscale layer
